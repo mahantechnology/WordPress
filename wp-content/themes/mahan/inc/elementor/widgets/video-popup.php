@@ -118,7 +118,7 @@ class Mahan_Widget_video_popup extends Mahan_Widget_Base {
 	protected function render() {
 		$settings = $this->get_settings_for_display();
 		$url      = isset( $settings['video_url']['url'] ) ? $settings['video_url']['url'] : '';
-		$poster   = isset( $settings['poster']['url'] ) ? $settings['poster']['url'] : '';
+		$poster   = $this->image_url( $settings['poster'] );
 		?>
 		<div class="mahan-video" <?php echo $poster ? 'style="background-image:url(\'' . esc_url( $poster ) . '\')"' : ''; ?>>
 			<span class="mahan-video__overlay" role="presentation"></span>

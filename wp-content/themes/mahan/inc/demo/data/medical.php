@@ -83,13 +83,14 @@ return array(
 		'home'    => array(
 			'title'    => __( 'صفحهٔ اصلی', 'mahan' ),
 			'meta'     => array( '_mahan_layout' => 'full' ),
-			'sections' => static function () {
+			'sections' => static function ( $media ) {
 				return Mahan_Elementor_Builder::make()
 					->row(
 						array(
 							mahan_el(
 								'hero-banner',
 								array(
+									'image' => $media->wide( 0 ),
 									'layout'          => 'split',
 									'eyebrow'         => __( 'کلینیک تخصصی ماهان', 'mahan' ),
 									'title'           => __( 'سلامت شما در دستان مطمئن', 'mahan' ),
@@ -230,7 +231,7 @@ return array(
 		),
 		'services'=> array(
 			'title'    => __( 'خدمات درمانی', 'mahan' ),
-			'sections' => static function () {
+			'sections' => static function ( $media ) {
 				return Mahan_Elementor_Builder::make()
 					->row(
 						array(
@@ -250,7 +251,7 @@ return array(
 		),
 		'doctors' => array(
 			'title'    => __( 'پزشکان', 'mahan' ),
-			'sections' => static function () {
+			'sections' => static function ( $media ) {
 				return Mahan_Elementor_Builder::make()
 					->row(
 						array(
@@ -270,7 +271,7 @@ return array(
 		),
 		'contact' => array(
 			'title'    => __( 'نوبت‌دهی و تماس', 'mahan' ),
-			'sections' => static function () {
+			'sections' => static function ( $media ) {
 				return Mahan_Elementor_Builder::make()
 					->row(
 						array(

@@ -27,6 +27,96 @@ return array(
 		'footer_about_text'     => __( 'ما کالای اصل را با قیمت منصفانه و ارسال سریع به دست شما می‌رسانیم.', 'mahan' ),
 	),
 
+	'product_cats' => array(
+		__( 'کالای دیجیتال', 'mahan' ),
+		__( 'پوشاک', 'mahan' ),
+		__( 'خانه و آشپزخانه', 'mahan' ),
+		__( 'زیبایی و سلامت', 'mahan' ),
+	),
+
+	'products' => array(
+		array(
+			'title'      => __( 'گوشی هوشمند مدل آلفا پرو', 'mahan' ),
+			'excerpt'    => __( 'نمایشگر ۶.۷ اینچی، دوربین سه‌گانه و باتری ۵۰۰۰ میلی‌آمپری.', 'mahan' ),
+			'content'    => __( 'آلفا پرو با پردازندهٔ نسل جدید و شارژ سریع ۶۵ وات، انتخابی مطمئن برای استفادهٔ روزمره و حرفه‌ای است. بدنهٔ مقاوم و صفحهٔ ۱۲۰ هرتز، تجربهٔ روانی می‌سازد.', 'mahan' ),
+			'price'      => 24900000,
+			'sale_price' => 21900000,
+			'stock'      => 7,
+		),
+		array(
+			'title'   => __( 'لپ‌تاپ حرفه‌ای ۱۵ اینچ', 'mahan' ),
+			'excerpt' => __( 'مناسب طراحی، برنامه‌نویسی و کارهای سنگین گرافیکی.', 'mahan' ),
+			'content' => __( 'با ۱۶ گیگابایت حافظه و درایو NVMe یک ترابایتی، این لپ‌تاپ چند پروژهٔ سنگین را هم‌زمان اجرا می‌کند. صفحه‌کلید با نورپردازی و پنل رنگی دقیق.', 'mahan' ),
+			'price'   => 68500000,
+		),
+		array(
+			'title'      => __( 'هدفون بی‌سیم نویزکنسل', 'mahan' ),
+			'excerpt'    => __( 'حذف فعال نویز و ۴۰ ساعت پخش مداوم.', 'mahan' ),
+			'content'    => __( 'بالشتک‌های نرم و وزن سبک، استفادهٔ چندساعته را راحت می‌کند. با قاب شارژ همراه و اتصال هم‌زمان به دو دستگاه.', 'mahan' ),
+			'price'      => 5200000,
+			'sale_price' => 4390000,
+		),
+		array(
+			'title'   => __( 'ساعت هوشمند ورزشی', 'mahan' ),
+			'excerpt' => __( 'پایش ضربان، خواب و بیش از ۸۰ حالت ورزشی.', 'mahan' ),
+			'content' => __( 'ضدآب تا ۵۰ متر، با باتری هفت‌روزه و نمایشگر آمولد همیشه‌روشن.', 'mahan' ),
+			'price'   => 3850000,
+			'stock'   => 4,
+		),
+		array(
+			'title'   => __( 'کیف چرم دست‌دوز', 'mahan' ),
+			'excerpt' => __( 'چرم طبیعی با دوخت دستی و ضمانت دو ساله.', 'mahan' ),
+			'content' => __( 'هر کیف در کارگاه ما و به‌صورت تکی دوخته می‌شود؛ به همین دلیل رگه‌های چرم هر نمونه منحصربه‌فرد است.', 'mahan' ),
+			'price'   => 2450000,
+		),
+		array(
+			'title'      => __( 'پیراهن نخی مردانه', 'mahan' ),
+			'excerpt'    => __( 'نخ ۱۰۰٪ پنبه، مناسب چهار فصل.', 'mahan' ),
+			'content'    => __( 'برش راحت و یقهٔ کلاسیک، هم برای محیط کار و هم برای استفادهٔ روزمره مناسب است.', 'mahan' ),
+			'price'      => 1290000,
+			'sale_price' => 890000,
+		),
+		array(
+			'title'   => __( 'کفش راحتی روزمره', 'mahan' ),
+			'excerpt' => __( 'زیرهٔ فوم سبک و رویهٔ تنفس‌پذیر.', 'mahan' ),
+			'content' => __( 'برای پیاده‌روی طولانی طراحی شده؛ وزن هر لنگه کمتر از ۳۰۰ گرم است.', 'mahan' ),
+			'price'   => 1850000,
+			'stock'   => 9,
+		),
+		array(
+			'title'   => __( 'قهوه‌ساز خانگی', 'mahan' ),
+			'excerpt' => __( 'دم‌آوری اسپرسو و قهوهٔ فیلتر در یک دستگاه.', 'mahan' ),
+			'content' => __( 'مخزن یک‌ونیم لیتری، فشار ۱۵ بار و بخارساز شیر برای کاپوچینو.', 'mahan' ),
+			'price'   => 8900000,
+		),
+		array(
+			'title'      => __( 'چراغ مطالعهٔ LED', 'mahan' ),
+			'excerpt'    => __( 'سه حالت نور و بازوی متحرک.', 'mahan' ),
+			'content'    => __( 'نور بدون سوسو با دمای رنگ قابل تنظیم، مناسب مطالعهٔ طولانی.', 'mahan' ),
+			'price'      => 780000,
+			'sale_price' => 620000,
+		),
+		array(
+			'title'   => __( 'کوله‌پشتی ضدآب', 'mahan' ),
+			'excerpt' => __( 'جای لپ‌تاپ ۱۶ اینچ و پارچهٔ ضدآب.', 'mahan' ),
+			'content' => __( 'بندهای ارگونومیک و پنل پشتی مش‌دار، حمل بار سنگین را راحت‌تر می‌کند.', 'mahan' ),
+			'price'   => 1650000,
+		),
+		array(
+			'title'   => __( 'اسپیکر قابل حمل', 'mahan' ),
+			'excerpt' => __( 'صدای ۳۶۰ درجه با ۱۲ ساعت پخش.', 'mahan' ),
+			'content' => __( 'ضدآب IPX7، مناسب سفر و فضای باز. امکان اتصال دو اسپیکر برای پخش استریو.', 'mahan' ),
+			'price'   => 2980000,
+			'stock'   => 5,
+		),
+		array(
+			'title'   => __( 'ماگ سرامیکی دست‌ساز', 'mahan' ),
+			'excerpt' => __( 'لعاب بدون سرب، مناسب ماشین ظرفشویی.', 'mahan' ),
+			'content' => __( 'هر ماگ روی چرخ سفالگری شکل می‌گیرد، پس اندازه و رنگ هر نمونه کمی متفاوت است.', 'mahan' ),
+			'price'   => 480000,
+		),
+	),
+
 	'services' => array(
 		array(
 			'title'   => __( 'ارسال سریع سراسر کشور', 'mahan' ),
@@ -54,7 +144,7 @@ return array(
 		'home'    => array(
 			'title'    => __( 'صفحهٔ اصلی', 'mahan' ),
 			'meta'     => array( '_mahan_layout' => 'full' ),
-			'sections' => static function () {
+			'sections' => static function ( $media ) {
 				return Mahan_Elementor_Builder::make()
 					->row(
 						array(
@@ -63,6 +153,7 @@ return array(
 								array(
 									'slides' => array(
 										array(
+											'image' => $media->wide( 0 ),
 											'eyebrow'     => __( 'فروش ویژهٔ هفته', 'mahan' ),
 											'title'       => __( 'تا ۴۰٪ تخفیف روی کالای دیجیتال', 'mahan' ),
 											'text'        => __( 'گوشی، لپ‌تاپ و لوازم جانبی با بهترین قیمت بازار.', 'mahan' ),
@@ -70,6 +161,7 @@ return array(
 											'align'       => 'right',
 										),
 										array(
+											'image' => $media->wide( 1 ),
 											'eyebrow'     => __( 'تازه‌رسیده‌ها', 'mahan' ),
 											'title'       => __( 'کالکشن جدید پاییز', 'mahan' ),
 											'text'        => __( 'محصولات تازه هر هفته به فروشگاه اضافه می‌شوند.', 'mahan' ),
@@ -256,13 +348,14 @@ return array(
 		),
 		'about'   => array(
 			'title'    => __( 'دربارهٔ ما', 'mahan' ),
-			'sections' => static function () {
+			'sections' => static function ( $media ) {
 				return Mahan_Elementor_Builder::make()
 					->row(
 						array(
 							mahan_el(
 								'feature-grid',
 								array(
+									'image' => $media->card( 0 ),
 									'title'           => __( 'دربارهٔ فروشگاه ما', 'mahan' ),
 									'title_highlight' => 1,
 									'heading_align'   => 'right',
@@ -299,7 +392,7 @@ return array(
 		),
 		'contact' => array(
 			'title'    => __( 'تماس با ما', 'mahan' ),
-			'sections' => static function () {
+			'sections' => static function ( $media ) {
 				return Mahan_Elementor_Builder::make()
 					->row(
 						array(
@@ -324,7 +417,7 @@ return array(
 		'blog'    => array( 'title' => __( 'مجله', 'mahan' ) ),
 		'faq'     => array(
 			'title'    => __( 'پرسش‌های متداول', 'mahan' ),
-			'sections' => static function () {
+			'sections' => static function ( $media ) {
 				return Mahan_Elementor_Builder::make()
 					->row(
 						array(
@@ -353,10 +446,11 @@ return array(
 					'icon'  => 'home',
 				),
 				'shop'  => array(
-					'title' => __( 'فروشگاه', 'mahan' ),
-					'url'   => home_url( '/shop/' ),
-					'icon'  => 'cart',
-					'mega'  => true,
+					'title'   => __( 'فروشگاه', 'mahan' ),
+					'wc_page' => 'shop',
+					'url'     => home_url( '/shop/' ),
+					'icon'    => 'cart',
+					'mega'    => true,
 				),
 				'blog'  => array(
 					'title' => __( 'مجله', 'mahan' ),
@@ -382,8 +476,9 @@ return array(
 			'name'  => __( 'منوی بالای فروشگاه', 'mahan' ),
 			'items' => array(
 				'track'  => array(
-					'title' => __( 'پیگیری سفارش', 'mahan' ),
-					'url'   => home_url( '/my-account/orders/' ),
+					'title'       => __( 'پیگیری سفارش', 'mahan' ),
+					'wc_endpoint' => 'orders',
+					'url'         => home_url( '/my-account/orders/' ),
 				),
 				'help'   => array(
 					'title' => __( 'راهنمای خرید', 'mahan' ),

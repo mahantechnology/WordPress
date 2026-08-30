@@ -148,9 +148,10 @@ class Mahan_Widget_image_box extends Mahan_Widget_Base {
 				$tag      = $has_link ? 'a' : 'div';
 				?>
 				<<?php echo esc_html( $tag ); ?> class="mahan-imgbox"<?php echo $has_link ? $this->link_attributes( $item['link'] ) : ''; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- Escaped in helper. ?>>
-					<?php if ( ! empty( $item['image']['url'] ) ) : ?>
+					<?php $image = $this->image_url( $item['image'] ); ?>
+					<?php if ( $image ) : ?>
 						<span class="mahan-imgbox__media">
-							<img src="<?php echo esc_url( $item['image']['url'] ); ?>" alt="<?php echo esc_attr( $item['title'] ); ?>" loading="lazy" />
+							<img src="<?php echo esc_url( $image ); ?>" alt="<?php echo esc_attr( $item['title'] ); ?>" loading="lazy" />
 						</span>
 					<?php endif; ?>
 					<span class="mahan-imgbox__body">

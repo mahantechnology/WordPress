@@ -119,7 +119,7 @@ class Mahan_Widget_lottie_player extends Mahan_Widget_Base {
 	protected function render() {
 		$settings = $this->get_settings_for_display();
 		$json     = esc_url_raw( $settings['json_url'] );
-		$fallback = isset( $settings['fallback']['url'] ) ? $settings['fallback']['url'] : '';
+		$fallback = $this->image_url( $settings['fallback'] );
 
 		if ( ! $json && ! $fallback ) {
 			return;

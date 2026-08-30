@@ -237,7 +237,7 @@ class Mahan_Widget_testimonial_carousel extends Mahan_Widget_Base {
 
 		foreach ( (array) $rows as $row ) {
 			$items[] = array(
-				'avatar' => ! empty( $row['avatar']['url'] ) ? $row['avatar']['url'] : '',
+				'avatar' => $this->image_url( $row['avatar'] ),
 				'name'   => $row['name'],
 				'role'   => $row['role'],
 				'rating' => (float) $row['rating'],

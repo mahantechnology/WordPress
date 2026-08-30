@@ -81,7 +81,6 @@ class Mahan_Options {
 			'header_account'          => true,
 			'header_cart'             => true,
 			'header_wishlist'         => true,
-			'header_compare'          => false,
 			'header_dark'             => false,
 			'topbar_enabled'          => true,
 			'topbar_text'             => 'ارسال رایگان برای سفارش‌های بالای ۵۰۰ هزار تومان',

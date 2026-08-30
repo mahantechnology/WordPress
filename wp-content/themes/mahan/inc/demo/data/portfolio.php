@@ -66,13 +66,14 @@ return array(
 				'_mahan_layout'      => 'full',
 				'_mahan_transparent' => '1',
 			),
-			'sections' => static function () {
+			'sections' => static function ( $media ) {
 				return Mahan_Elementor_Builder::make()
 					->row(
 						array(
 							mahan_el(
 								'hero-banner',
 								array(
+									'image' => $media->wide( 0 ),
 									'layout'          => 'split',
 									'eyebrow'         => __( 'سلام، من نگار هستم', 'mahan' ),
 									'title'           => __( 'محصولات دیجیتالی می‌سازم که مردم دوست‌شان دارند', 'mahan' ),
@@ -193,13 +194,14 @@ return array(
 		),
 		'about'     => array(
 			'title'    => __( 'دربارهٔ من', 'mahan' ),
-			'sections' => static function () {
+			'sections' => static function ( $media ) {
 				return Mahan_Elementor_Builder::make()
 					->row(
 						array(
 							mahan_el(
 								'feature-grid',
 								array(
+									'image' => $media->card( 0 ),
 									'title'           => __( 'کمی دربارهٔ من', 'mahan' ),
 									'title_highlight' => 1,
 									'heading_align'   => 'right',
@@ -213,6 +215,7 @@ return array(
 							mahan_el(
 								'gallery-grid',
 								array(
+									'images' => $media->gallery( 'card', 6, 1 ),
 									'title'           => __( 'فضای کار', 'mahan' ),
 									'title_highlight' => 1,
 									'layout'          => 'masonry',
@@ -226,7 +229,7 @@ return array(
 		),
 		'portfolio' => array(
 			'title'    => __( 'نمونه‌کارها', 'mahan' ),
-			'sections' => static function () {
+			'sections' => static function ( $media ) {
 				return Mahan_Elementor_Builder::make()
 					->row(
 						array(
@@ -247,7 +250,7 @@ return array(
 		),
 		'contact'   => array(
 			'title'    => __( 'تماس', 'mahan' ),
-			'sections' => static function () {
+			'sections' => static function ( $media ) {
 				return Mahan_Elementor_Builder::make()
 					->row(
 						array(

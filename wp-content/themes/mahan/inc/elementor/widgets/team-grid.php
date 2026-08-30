@@ -250,7 +250,7 @@ class Mahan_Widget_team_grid extends Mahan_Widget_Base {
 			}
 
 			$members[] = array(
-				'photo'  => ! empty( $row['photo']['url'] ) ? $row['photo']['url'] : '',
+				'photo'  => $this->image_url( $row['photo'] ),
 				'name'   => $row['name'],
 				'role'   => $row['role'],
 				'bio'    => $row['bio'],

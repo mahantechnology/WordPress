@@ -177,8 +177,9 @@ class Mahan_Widget_product_banner extends Mahan_Widget_Base {
 		<div class="mahan-grid mahan-promos">
 			<?php foreach ( $settings['banners'] as $banner ) : ?>
 				<a class="mahan-promo mahan-promo--<?php echo esc_attr( $banner['align'] ); ?>"<?php echo $this->link_attributes( $banner['link'] ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- Escaped in helper. ?>>
-					<?php if ( ! empty( $banner['image']['url'] ) ) : ?>
-						<img class="mahan-promo__image" src="<?php echo esc_url( $banner['image']['url'] ); ?>" alt="<?php echo esc_attr( $banner['title'] ); ?>" loading="lazy" />
+					<?php $image = $this->image_url( $banner['image'] ); ?>
+					<?php if ( $image ) : ?>
+						<img class="mahan-promo__image" src="<?php echo esc_url( $image ); ?>" alt="<?php echo esc_attr( $banner['title'] ); ?>" loading="lazy" />
 					<?php endif; ?>
 					<span class="mahan-promo__content">
 						<?php if ( $banner['eyebrow'] ) : ?>

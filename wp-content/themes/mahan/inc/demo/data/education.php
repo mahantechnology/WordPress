@@ -76,13 +76,14 @@ return array(
 		'home'    => array(
 			'title'    => __( 'صفحهٔ اصلی', 'mahan' ),
 			'meta'     => array( '_mahan_layout' => 'full' ),
-			'sections' => static function () {
+			'sections' => static function ( $media ) {
 				return Mahan_Elementor_Builder::make()
 					->row(
 						array(
 							mahan_el(
 								'hero-banner',
 								array(
+									'image' => $media->wide( 0 ),
 									'layout'          => 'split',
 									'eyebrow'         => __( 'ثبت‌نام ترم جدید', 'mahan' ),
 									'title'           => __( 'مهارتی یاد بگیرید که بازار کار می‌خواهد', 'mahan' ),
@@ -219,7 +220,7 @@ return array(
 		),
 		'courses' => array(
 			'title'    => __( 'دوره‌ها', 'mahan' ),
-			'sections' => static function () {
+			'sections' => static function ( $media ) {
 				return Mahan_Elementor_Builder::make()
 					->row(
 						array(
@@ -239,13 +240,14 @@ return array(
 		),
 		'about'   => array(
 			'title'    => __( 'دربارهٔ آموزشگاه', 'mahan' ),
-			'sections' => static function () {
+			'sections' => static function ( $media ) {
 				return Mahan_Elementor_Builder::make()
 					->row(
 						array(
 							mahan_el(
 								'feature-grid',
 								array(
+									'image' => $media->card( 0 ),
 									'title'           => __( 'دربارهٔ ما', 'mahan' ),
 									'title_highlight' => 1,
 									'heading_align'   => 'right',
@@ -270,7 +272,7 @@ return array(
 		),
 		'contact' => array(
 			'title'    => __( 'تماس و ثبت‌نام', 'mahan' ),
-			'sections' => static function () {
+			'sections' => static function ( $media ) {
 				return Mahan_Elementor_Builder::make()
 					->row(
 						array(

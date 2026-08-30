@@ -2649,6 +2649,154 @@ label {
 .mahan-social--brand .mahan-social__link--youtube:hover   { background: #ff0000; color: #fff; }
 .mahan-social--brand .mahan-social__link--aparat:hover    { background: #ed145b; color: #fff; }
 
+/* Core block widgets.
+ *
+ * A block widget does not run through before_title/after_title, so its
+ * heading arrives as a bare .wp-block-heading and core's own list markup
+ * comes with it. These rules give a default sidebar the same look as the
+ * theme's own widgets. */
+
+.mahan-widget :is(h1, h2, h3, h4, h5, h6),
+.mahan-widget .wp-block-heading {
+	position: relative;
+	margin: 0 0 16px;
+	padding-bottom: 12px;
+	font-size: var(--mahan-fs-lg);
+	line-height: 1.6;
+	border-bottom: 1px solid var(--mahan-border);
+}
+
+.mahan-widget :is(h1, h2, h3, h4, h5, h6)::after,
+.mahan-widget .wp-block-heading::after {
+	content: '';
+	position: absolute;
+	bottom: -1px;
+	inset-inline-start: 0;
+	width: 52px;
+	height: 2px;
+	background: var(--mahan-gradient);
+}
+
+.mahan-widget .wp-block-group,
+.mahan-widget .wp-block-group__inner-container {
+	margin: 0;
+	padding: 0;
+}
+
+.mahan-widget :is(ol, ul):not(.mahan-widget-posts__list) {
+	margin: 0;
+	padding: 0;
+	list-style: none;
+	display: grid;
+	gap: 10px;
+}
+
+.mahan-widget li {
+	font-size: var(--mahan-fs-sm);
+	color: var(--mahan-muted);
+}
+
+.mahan-widget li ol,
+.mahan-widget li ul {
+	margin-top: 10px;
+	padding-inline-start: 14px;
+}
+
+.mahan-widget .wp-block-latest-comments__comment {
+	display: grid;
+	gap: 4px;
+	margin: 0;
+	line-height: 1.8;
+}
+
+.mahan-widget .wp-block-latest-comments__comment-meta {
+	font-size: var(--mahan-fs-sm);
+	color: var(--mahan-text);
+}
+
+.mahan-widget .wp-block-latest-comments__comment-date,
+.mahan-widget .wp-block-latest-posts__post-date {
+	font-size: var(--mahan-fs-xs);
+	color: var(--mahan-muted);
+}
+
+.mahan-widget .wp-block-latest-comments__comment-excerpt p {
+	margin: 0;
+	font-size: var(--mahan-fs-sm);
+}
+
+.mahan-widget .wp-block-tag-cloud {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 8px;
+}
+
+.mahan-widget .wp-block-tag-cloud a {
+	padding: 6px 12px;
+	border-radius: var(--mahan-radius-pill);
+	background: var(--mahan-surface-2);
+	color: var(--mahan-muted);
+	font-size: var(--mahan-fs-xs) !important;
+	text-decoration: none;
+	transition: all .18s ease;
+}
+
+.mahan-widget .wp-block-tag-cloud a:hover {
+	background: var(--mahan-gradient);
+	color: var(--mahan-primary-contrast);
+}
+
+.mahan-widget .wp-block-calendar table {
+	width: 100%;
+	font-size: var(--mahan-fs-sm);
+}
+
+/* Core search block, wherever it lands. */
+
+.wp-block-search__inside-wrapper {
+	gap: 8px;
+}
+
+.wp-block-search .wp-block-search__input {
+	padding: 11px 14px;
+	border: 1px solid var(--mahan-border);
+	border-radius: var(--mahan-radius-sm);
+	background: var(--mahan-surface);
+	color: var(--mahan-text);
+	font-family: inherit;
+	font-size: var(--mahan-fs-sm);
+}
+
+.wp-block-search .wp-block-search__input:focus {
+	outline: none;
+	border-color: var(--mahan-primary);
+	box-shadow: 0 0 0 3px rgba(var(--mahan-primary-rgb), .16);
+}
+
+.wp-block-search .wp-block-search__button {
+	padding: 11px 18px;
+	border: 0;
+	border-radius: var(--mahan-radius-sm);
+	background: var(--mahan-gradient);
+	color: var(--mahan-primary-contrast);
+	font-family: inherit;
+	font-size: var(--mahan-fs-sm);
+	font-weight: 600;
+	cursor: pointer;
+	transition: filter .18s ease;
+}
+
+.wp-block-search .wp-block-search__button:hover {
+	filter: brightness(1.06);
+}
+
+.wp-block-search .wp-block-search__label {
+	display: block;
+	margin-bottom: 8px;
+	font-weight: 600;
+	font-size: var(--mahan-fs-sm);
+}
+
 /* ------------------------------------------------------------------ *
  * 13. Footer
  * ------------------------------------------------------------------ */

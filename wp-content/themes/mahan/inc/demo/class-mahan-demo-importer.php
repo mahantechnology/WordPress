@@ -30,12 +30,34 @@ class Mahan_Demo_Importer {
 	public static function steps() {
 		return array(
 			'settings' => __( 'اعمال رنگ‌ها و تنظیمات', 'mahan' ),
+			'media'    => __( 'افزودن تصاویر به کتابخانهٔ رسانه', 'mahan' ),
 			'content'  => __( 'ساخت نوشته‌ها و محتوای نمونه', 'mahan' ),
+			'products' => __( 'ساخت محصولات نمونه', 'mahan' ),
 			'pages'    => __( 'ساخت برگه‌ها', 'mahan' ),
 			'menus'    => __( 'ساخت منوها', 'mahan' ),
 			'widgets'  => __( 'چیدن ابزارک‌ها', 'mahan' ),
 			'finish'   => __( 'تنظیمات پایانی', 'mahan' ),
 		);
+	}
+
+	/**
+	 * The bundled artwork, loaded lazily so a plain page load pays nothing.
+	 *
+	 * @var Mahan_Demo_Media|null
+	 */
+	private $media = null;
+
+	/**
+	 * The media helper, created on first use.
+	 *
+	 * @return Mahan_Demo_Media
+	 */
+	private function media() {
+		if ( null === $this->media ) {
+			$this->media = new Mahan_Demo_Media();
+		}
+
+		return $this->media;
 	}
 
 	/**
@@ -87,16 +109,27 @@ class Mahan_Demo_Importer {
 			);
 		}
 
-		$keys = array_keys( $steps );
-		$next = array_search( $step, $keys, true );
-		$next = ( false !== $next && isset( $keys[ $next + 1 ] ) ) ? $keys[ $next + 1 ] : '';
+		// A step may hand back a plain count, or an array asking to run again.
+		$repeat  = is_array( $result ) && ! empty( $result['repeat'] );
+		$note    = is_array( $result ) && ! empty( $result['note'] ) ? $result['note'] : '';
+		$created = is_array( $result ) ? (int) $result['created'] : (int) $result;
+
+		if ( $repeat ) {
+			$next = $step;
+		} else {
+			$keys = array_keys( $steps );
+			$at   = array_search( $step, $keys, true );
+			$next = ( false !== $at && isset( $keys[ $at + 1 ] ) ) ? $keys[ $at + 1 ] : '';
+		}
 
 		wp_send_json_success(
 			array(
 				'step'    => $step,
 				'label'   => $steps[ $step ],
 				'next'    => $next,
-				'created' => $result,
+				'repeat'  => $repeat,
+				'note'    => $note,
+				'created' => $created,
 				'homeUrl' => home_url( '/' ),
 			)
 		);
@@ -145,6 +178,29 @@ class Mahan_Demo_Importer {
 	}
 
 	/**
+	 * Copies the bundled artwork into the media library.
+	 *
+	 * @param array $pack Demo pack.
+	 * @return int Number of attachments created.
+	 */
+	private function import_media( array $pack ) {
+		$result = $this->media()->import();
+
+		return array(
+			'created' => $result['created'],
+			// Repeat this step until every bundled image is in the library.
+			'repeat'  => $result['remaining'] > 0,
+			'note'    => $result['remaining'] > 0
+				? sprintf(
+					/* translators: %s: number of images left. */
+					__( '%s تصویر باقی مانده…', 'mahan' ),
+					mahan_fa_numbers( $result['remaining'] )
+				)
+				: '',
+		);
+	}
+
+	/**
 	 * Creates the sample posts, testimonials, services, portfolio and team.
 	 *
 	 * @param array $pack Demo pack.
@@ -154,8 +210,10 @@ class Mahan_Demo_Importer {
 		$shared  = Mahan_Demo_Library::shared_content();
 		$created = 0;
 
-		foreach ( $shared['posts'] as $post ) {
-			$created += $this->create_post(
+		$media = $this->media();
+
+		foreach ( $shared['posts'] as $index => $post ) {
+			$id = $this->create_post(
 				array(
 					'post_type'    => 'post',
 					'post_title'   => $post['title'],
@@ -163,10 +221,15 @@ class Mahan_Demo_Importer {
 					'post_content' => $post['content'],
 				),
 				array( 'category' => array( $post['category'] ) )
-			) ? 1 : 0;
+			);
+
+			if ( $id ) {
+				$media->set_thumbnail( $id, 'card', $index );
+				++$created;
+			}
 		}
 
-		foreach ( $shared['testimonials'] as $testimonial ) {
+		foreach ( $shared['testimonials'] as $index => $testimonial ) {
 			$id = $this->create_post(
 				array(
 					'post_type'    => 'mahan_testimonial',
@@ -178,6 +241,7 @@ class Mahan_Demo_Importer {
 			if ( $id ) {
 				update_post_meta( $id, '_mahan_testimonial_role', $testimonial['role'] );
 				update_post_meta( $id, '_mahan_testimonial_rating', $testimonial['rating'] );
+				$media->set_thumbnail( $id, 'portrait', $index );
 				++$created;
 			}
 		}
@@ -209,11 +273,112 @@ class Mahan_Demo_Importer {
 					}
 				}
 
+				// Team members read better in portrait; the rest use landscape cards.
+				$media->set_thumbnail( $id, 'mahan_team' === $post_type ? 'portrait' : 'card', $index );
+
 				++$created;
 			}
 		}
 
 		return $created;
+	}
+
+	/**
+	 * Creates the pack's WooCommerce products and category thumbnails.
+	 *
+	 * @param array $pack Demo pack.
+	 * @return int Number of products created.
+	 */
+	private function import_products( array $pack ) {
+		if ( ! mahan_has_woocommerce() || empty( $pack['products'] ) ) {
+			return 0;
+		}
+
+		$media   = $this->media();
+		$created = 0;
+		$terms   = array();
+
+		// Categories first, so each product has something to be filed under.
+		foreach ( (array) ( isset( $pack['product_cats'] ) ? $pack['product_cats'] : array() ) as $index => $label ) {
+			$existing = term_exists( $label, 'product_cat' );
+			$term     = $existing ? $existing : wp_insert_term( $label, 'product_cat' );
+
+			if ( is_wp_error( $term ) ) {
+				continue;
+			}
+
+			$term_id      = (int) $term['term_id'];
+			$terms[]      = $term_id;
+
+			$media->set_term_thumbnail( $term_id, 'square', $index );
+			$this->log_term( $term_id );
+		}
+
+		foreach ( $pack['products'] as $index => $item ) {
+			if ( $this->title_exists( $item['title'], 'product' ) ) {
+				continue;
+			}
+
+			$product = new WC_Product_Simple();
+			$product->set_name( $item['title'] );
+			$product->set_status( 'publish' );
+			$product->set_catalog_visibility( 'visible' );
+			$product->set_description( isset( $item['content'] ) ? $item['content'] : '' );
+			$product->set_short_description( isset( $item['excerpt'] ) ? $item['excerpt'] : '' );
+			$product->set_regular_price( (string) $item['price'] );
+
+			if ( ! empty( $item['sale_price'] ) ) {
+				$product->set_sale_price( (string) $item['sale_price'] );
+			}
+
+			if ( isset( $item['stock'] ) ) {
+				$product->set_manage_stock( true );
+				$product->set_stock_quantity( (int) $item['stock'] );
+			}
+
+			if ( $terms ) {
+				$product->set_category_ids( array( $terms[ $index % count( $terms ) ] ) );
+			}
+
+			$product_id = $product->save();
+
+			if ( ! $product_id ) {
+				continue;
+			}
+
+			update_post_meta( $product_id, self::OWNER_META, 1 );
+			$this->log_post( $product_id );
+
+			$image = $media->get( 'square', $index );
+
+			if ( ! empty( $image['id'] ) ) {
+				set_post_thumbnail( $product_id, $image['id'] );
+
+				// A second image gives the card something to swap to on hover.
+				$gallery = $media->get( 'square', $index + 1 );
+
+				if ( ! empty( $gallery['id'] ) ) {
+					update_post_meta( $product_id, '_product_image_gallery', (string) $gallery['id'] );
+				}
+			}
+
+			++$created;
+		}
+
+		return $created;
+	}
+
+	/**
+	 * Records a created term so the rollback can find it.
+	 *
+	 * @param int $term_id Term ID.
+	 */
+	private function log_term( $term_id ) {
+		$log            = $this->get_log();
+		$log['terms']   = isset( $log['terms'] ) ? (array) $log['terms'] : array();
+		$log['terms'][] = (int) $term_id;
+
+		update_option( self::LOG_OPTION, $log, false );
 	}
 
 	/**
@@ -255,7 +420,7 @@ class Mahan_Demo_Importer {
 			update_post_meta( $page_id, self::OWNER_META, $pack['id'] );
 
 			if ( ! empty( $page['sections'] ) && is_callable( $page['sections'] ) ) {
-				$this->attach_elementor( $page_id, call_user_func( $page['sections'] ) );
+				$this->attach_elementor( $page_id, call_user_func( $page['sections'], $this->media() ) );
 			}
 
 			if ( ! empty( $page['meta'] ) ) {
@@ -356,12 +521,19 @@ class Mahan_Demo_Importer {
 					'menu-item-parent-id' => isset( $item['parent'], $parents[ $item['parent'] ] ) ? $parents[ $item['parent'] ] : 0,
 				);
 
+				$store_page = isset( $item['wc_page'] ) ? $this->store_page_id( $item['wc_page'] ) : 0;
+
 				if ( isset( $item['page'] ) && isset( $page_ids[ $item['page'] ] ) ) {
 					$args['menu-item-object-id'] = $page_ids[ $item['page'] ];
 					$args['menu-item-object']    = 'page';
 					$args['menu-item-type']      = 'post_type';
+				} elseif ( $store_page ) {
+					// Linking the real WooCommerce page keeps the item right whatever its slug is.
+					$args['menu-item-object-id'] = $store_page;
+					$args['menu-item-object']    = 'page';
+					$args['menu-item-type']      = 'post_type';
 				} else {
-					$args['menu-item-url']  = isset( $item['url'] ) ? $item['url'] : home_url( '/' );
+					$args['menu-item-url']  = $this->menu_url( $item );
 					$args['menu-item-type'] = 'custom';
 				}
 
@@ -470,6 +642,48 @@ class Mahan_Demo_Importer {
 	}
 
 	/**
+	 * Looks up one of WooCommerce's own pages by its role.
+	 *
+	 * @param string $role WooCommerce page role, e.g. 'shop' or 'myaccount'.
+	 * @return int Page ID, or 0 when the page is missing or unpublished.
+	 */
+	private function store_page_id( $role ) {
+		if ( ! mahan_has_woocommerce() || ! function_exists( 'wc_get_page_id' ) ) {
+			return 0;
+		}
+
+		$page_id = (int) wc_get_page_id( $role );
+
+		if ( $page_id < 1 || 'publish' !== get_post_status( $page_id ) ) {
+			return 0;
+		}
+
+		return $page_id;
+	}
+
+	/**
+	 * Resolves the address a custom menu item should point at.
+	 *
+	 * A pack can name a WooCommerce account endpoint instead of writing the
+	 * address out, so the item keeps working on a store whose endpoints or
+	 * permalinks were renamed.
+	 *
+	 * @param array $item Menu item definition from a pack.
+	 * @return string
+	 */
+	private function menu_url( array $item ) {
+		if ( ! empty( $item['wc_endpoint'] ) && function_exists( 'wc_get_account_endpoint_url' ) ) {
+			$url = wc_get_account_endpoint_url( $item['wc_endpoint'] );
+
+			if ( $url ) {
+				return $url;
+			}
+		}
+
+		return isset( $item['url'] ) ? $item['url'] : home_url( '/' );
+	}
+
+	/**
 	 * Points a freshly installed store at Persian currency formatting.
 	 *
 	 * The demo prices are written in Toman, so leaving WooCommerce on its US
@@ -494,6 +708,31 @@ class Mahan_Demo_Importer {
 		update_option( 'woocommerce_default_country', 'IR:THR' );
 		update_option( 'woocommerce_weight_unit', 'kg' );
 		update_option( 'woocommerce_dimension_unit', 'cm' );
+
+		$this->open_store();
+	}
+
+	/**
+	 * Lifts WooCommerce's "coming soon" curtain off the demo store.
+	 *
+	 * A fresh WooCommerce install hides the store behind a placeholder page
+	 * until onboarding finishes, so an imported shop demo would look empty to
+	 * everyone but the administrator. Only an untouched store is opened: once
+	 * the merchant has been through onboarding, the setting is theirs.
+	 */
+	private function open_store() {
+		if ( 'yes' !== get_option( 'woocommerce_coming_soon' ) ) {
+			return;
+		}
+
+		// A completed onboarding profile means the merchant chose this state.
+		$profile = get_option( 'woocommerce_onboarding_profile' );
+
+		if ( is_array( $profile ) && ! empty( $profile['completed'] ) ) {
+			return;
+		}
+
+		update_option( 'woocommerce_coming_soon', 'no' );
 	}
 
 	/**
@@ -624,6 +863,14 @@ class Mahan_Demo_Importer {
 				++$removed;
 			}
 		}
+
+		foreach ( (array) ( isset( $log['terms'] ) ? $log['terms'] : array() ) as $term_id ) {
+			if ( ! is_wp_error( wp_delete_term( $term_id, 'product_cat' ) ) ) {
+				++$removed;
+			}
+		}
+
+		$removed += Mahan_Demo_Media::rollback();
 
 		update_option( 'show_on_front', 'posts' );
 		delete_option( 'page_on_front' );

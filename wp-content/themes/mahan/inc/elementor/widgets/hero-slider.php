@@ -199,8 +199,9 @@ class Mahan_Widget_hero_slider extends Mahan_Widget_Base {
 					<?php foreach ( $settings['slides'] as $slide ) : ?>
 						<div class="mahan-carousel__slide elementor-repeater-item-<?php echo esc_attr( $slide['_id'] ); ?>">
 							<div class="mahan-slide mahan-slide--<?php echo esc_attr( $slide['align'] ); ?>">
-								<?php if ( ! empty( $slide['image']['url'] ) ) : ?>
-									<img class="mahan-slide__image" src="<?php echo esc_url( $slide['image']['url'] ); ?>" alt="<?php echo esc_attr( $slide['title'] ); ?>" loading="lazy" />
+								<?php $image = $this->image_url( $slide['image'] ); ?>
+								<?php if ( $image ) : ?>
+									<img class="mahan-slide__image" src="<?php echo esc_url( $image ); ?>" alt="<?php echo esc_attr( $slide['title'] ); ?>" loading="lazy" />
 								<?php endif; ?>
 								<span class="mahan-slide__overlay" role="presentation"></span>
 								<div class="mahan-slide__content">

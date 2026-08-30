@@ -146,7 +146,7 @@ class Mahan_Widget_feature_grid extends Mahan_Widget_Base {
 	protected function render() {
 		$settings = $this->get_settings_for_display();
 		$position = $settings['media_position'];
-		$image    = ! empty( $settings['image']['url'] ) ? $settings['image']['url'] : '';
+		$image    = $this->image_url( $settings['image'] );
 		?>
 		<div class="mahan-features mahan-features--media-<?php echo esc_attr( $position ); ?>">
 			<?php if ( 'none' !== $position && $image ) : ?>

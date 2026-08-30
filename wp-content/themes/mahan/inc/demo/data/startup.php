@@ -32,13 +32,14 @@ return array(
 				'_mahan_layout'      => 'full',
 				'_mahan_transparent' => '1',
 			),
-			'sections' => static function () {
+			'sections' => static function ( $media ) {
 				return Mahan_Elementor_Builder::make()
 					->row(
 						array(
 							mahan_el(
 								'hero-banner',
 								array(
+									'image' => $media->wide( 0 ),
 									'layout'          => 'split',
 									'eyebrow'         => __( 'نسخهٔ ۳ منتشر شد', 'mahan' ),
 									'title'           => __( 'کارهای تیم‌تان را در یک‌جا جمع کنید', 'mahan' ),
@@ -73,6 +74,14 @@ return array(
 							mahan_el(
 								'logo-carousel',
 								array(
+									'logos' => array(
+										array( 'logo' => $media->logo( 0 ) ),
+										array( 'logo' => $media->logo( 1 ) ),
+										array( 'logo' => $media->logo( 2 ) ),
+										array( 'logo' => $media->logo( 3 ) ),
+										array( 'logo' => $media->logo( 4 ) ),
+										array( 'logo' => $media->logo( 5 ) ),
+									),
 									'show_heading'   => '',
 									'slides_to_show' => '6',
 									'grayscale'      => 'yes',
@@ -132,6 +141,7 @@ return array(
 							mahan_el(
 								'feature-grid',
 								array(
+									'image' => $media->card( 0 ),
 									'title'           => __( 'ساخته‌شده برای تیم‌های واقعی', 'mahan' ),
 									'title_highlight' => 2,
 									'heading_align'   => 'right',
@@ -146,6 +156,8 @@ return array(
 							mahan_el(
 								'before-after',
 								array(
+									'before_image' => $media->card( 1 ),
+									'after_image' => $media->card( 2 ),
 									'before_label' => __( 'قبل از ماهان', 'mahan' ),
 									'after_label'  => __( 'بعد از ماهان', 'mahan' ),
 								)
@@ -221,7 +233,7 @@ return array(
 		),
 		'pricing'  => array(
 			'title'    => __( 'تعرفه‌ها', 'mahan' ),
-			'sections' => static function () {
+			'sections' => static function ( $media ) {
 				return Mahan_Elementor_Builder::make()
 					->row(
 						array(
@@ -262,7 +274,7 @@ return array(
 		),
 		'features' => array(
 			'title'    => __( 'ویژگی‌ها', 'mahan' ),
-			'sections' => static function () {
+			'sections' => static function ( $media ) {
 				return Mahan_Elementor_Builder::make()
 					->row(
 						array(
@@ -293,7 +305,7 @@ return array(
 		),
 		'contact'  => array(
 			'title'    => __( 'تماس', 'mahan' ),
-			'sections' => static function () {
+			'sections' => static function ( $media ) {
 				return Mahan_Elementor_Builder::make()
 					->row(
 						array(

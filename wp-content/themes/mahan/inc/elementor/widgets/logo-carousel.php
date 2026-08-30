@@ -131,8 +131,9 @@ class Mahan_Widget_logo_carousel extends Mahan_Widget_Base {
 						?>
 						<div class="mahan-carousel__slide">
 							<<?php echo esc_html( $tag ); ?> class="mahan-logos__item"<?php echo $has_link ? $this->link_attributes( $logo['link'] ) : ''; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- Escaped in helper. ?>>
-								<?php if ( ! empty( $logo['logo']['url'] ) ) : ?>
-									<img src="<?php echo esc_url( $logo['logo']['url'] ); ?>" alt="<?php echo esc_attr( $logo['name'] ); ?>" loading="lazy" />
+								<?php $image = $this->image_url( $logo['logo'] ); ?>
+								<?php if ( $image ) : ?>
+									<img src="<?php echo esc_url( $image ); ?>" alt="<?php echo esc_attr( $logo['name'] ); ?>" loading="lazy" />
 								<?php else : ?>
 									<span class="mahan-logos__name"><?php echo esc_html( $logo['name'] ); ?></span>
 								<?php endif; ?>

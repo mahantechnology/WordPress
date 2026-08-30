@@ -302,7 +302,7 @@ class Mahan_Widget_hero_banner extends Mahan_Widget_Base {
 	protected function render() {
 		$settings = $this->get_settings_for_display();
 		$layout   = $settings['layout'];
-		$image    = ! empty( $settings['image']['url'] ) ? $settings['image']['url'] : '';
+		$image    = $this->image_url( $settings['image'] );
 		?>
 		<div class="mahan-hero mahan-hero--<?php echo esc_attr( $layout ); ?>">
 			<?php if ( 'split' !== $layout && $image ) : ?>

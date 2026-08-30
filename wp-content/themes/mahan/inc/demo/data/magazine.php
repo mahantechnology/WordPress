@@ -32,7 +32,7 @@ return array(
 		'home'    => array(
 			'title'    => __( 'صفحهٔ اصلی', 'mahan' ),
 			'meta'     => array( '_mahan_layout' => 'full' ),
-			'sections' => static function () {
+			'sections' => static function ( $media ) {
 				return Mahan_Elementor_Builder::make()
 					->row(
 						array(
@@ -142,13 +142,14 @@ return array(
 		),
 		'about'   => array(
 			'title'    => __( 'دربارهٔ ما', 'mahan' ),
-			'sections' => static function () {
+			'sections' => static function ( $media ) {
 				return Mahan_Elementor_Builder::make()
 					->row(
 						array(
 							mahan_el(
 								'feature-grid',
 								array(
+									'image' => $media->card( 0 ),
 									'title'           => __( 'دربارهٔ مجله', 'mahan' ),
 									'title_highlight' => 1,
 									'heading_align'   => 'right',
@@ -174,7 +175,7 @@ return array(
 		),
 		'contact' => array(
 			'title'    => __( 'تماس با ما', 'mahan' ),
-			'sections' => static function () {
+			'sections' => static function ( $media ) {
 				return Mahan_Elementor_Builder::make()
 					->row(
 						array(

@@ -83,13 +83,14 @@ return array(
 		'home'     => array(
 			'title'    => __( 'صفحهٔ اصلی', 'mahan' ),
 			'meta'     => array( '_mahan_layout' => 'full' ),
-			'sections' => static function () {
+			'sections' => static function ( $media ) {
 				return Mahan_Elementor_Builder::make()
 					->row(
 						array(
 							mahan_el(
 								'hero-banner',
 								array(
+									'image' => $media->wide( 0 ),
 									'layout'         => 'split',
 									'eyebrow'        => __( 'شریک فناوری شما', 'mahan' ),
 									'title'          => __( 'کسب‌وکار خود را با فناوری جلو ببرید', 'mahan' ),
@@ -173,6 +174,14 @@ return array(
 							mahan_el(
 								'logo-carousel',
 								array(
+									'logos' => array(
+										array( 'logo' => $media->logo( 0 ) ),
+										array( 'logo' => $media->logo( 1 ) ),
+										array( 'logo' => $media->logo( 2 ) ),
+										array( 'logo' => $media->logo( 3 ) ),
+										array( 'logo' => $media->logo( 4 ) ),
+										array( 'logo' => $media->logo( 5 ) ),
+									),
 									'title'           => __( 'همکاران ما', 'mahan' ),
 									'title_highlight' => 1,
 									'slides_to_show'  => '5',
@@ -210,13 +219,14 @@ return array(
 		),
 		'about'    => array(
 			'title'    => __( 'دربارهٔ ما', 'mahan' ),
-			'sections' => static function () {
+			'sections' => static function ( $media ) {
 				return Mahan_Elementor_Builder::make()
 					->row(
 						array(
 							mahan_el(
 								'feature-grid',
 								array(
+									'image' => $media->card( 0 ),
 									'title'           => __( 'ما چه کسانی هستیم؟', 'mahan' ),
 									'title_highlight' => 1,
 									'heading_align'   => 'right',
@@ -255,7 +265,7 @@ return array(
 		),
 		'services' => array(
 			'title'    => __( 'خدمات', 'mahan' ),
-			'sections' => static function () {
+			'sections' => static function ( $media ) {
 				return Mahan_Elementor_Builder::make()
 					->row(
 						array(
@@ -300,7 +310,7 @@ return array(
 		),
 		'contact'  => array(
 			'title'    => __( 'تماس با ما', 'mahan' ),
-			'sections' => static function () {
+			'sections' => static function ( $media ) {
 				return Mahan_Elementor_Builder::make()
 					->row(
 						array(

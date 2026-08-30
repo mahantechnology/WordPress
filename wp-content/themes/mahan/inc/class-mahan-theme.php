@@ -52,6 +52,7 @@ final class Mahan_Theme {
 			'helpers.php',
 			'template-tags.php',
 			'class-mahan-options.php',
+			'class-mahan-schema.php',
 			'class-mahan-setup.php',
 			'class-mahan-assets.php',
 			'class-mahan-nav-walker.php',
@@ -69,9 +70,12 @@ final class Mahan_Theme {
 			'class-mahan-performance.php',
 			'class-mahan-plugin-notice.php',
 			'demo/class-mahan-elementor-builder.php',
+			'demo/class-mahan-demo-media.php',
 			'demo/class-mahan-demo-library.php',
 			'demo/class-mahan-demo-importer.php',
 			'demo/class-mahan-setup-wizard.php',
+			'admin/class-mahan-elements-catalog.php',
+			'admin/class-mahan-admin.php',
 		);
 
 		foreach ( $files as $file ) {
@@ -108,6 +112,7 @@ final class Mahan_Theme {
 			'Mahan_Mega_Menu',
 			'Mahan_Demo_Importer',
 			'Mahan_Setup_Wizard',
+			'Mahan_Admin',
 		);
 
 		if ( mahan_has_woocommerce() ) {

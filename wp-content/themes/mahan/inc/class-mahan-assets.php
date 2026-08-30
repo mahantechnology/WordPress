@@ -20,6 +20,88 @@ class Mahan_Assets {
 		add_action( 'wp_head', array( $this, 'preload_fonts' ), 1 );
 		add_action( 'wp_head', array( $this, 'dark_mode_bootstrap' ), 2 );
 		add_filter( 'style_loader_tag', array( $this, 'defer_noncritical_css' ), 10, 4 );
+		add_filter( 'wp_theme_json_data_theme', array( $this, 'theme_json' ) );
+	}
+
+	/**
+	 * Feeds the live palette and type settings into theme.json.
+	 *
+	 * theme.json is a static file, so the block editor and every core block
+	 * would keep painting themselves in the shipped defaults long after the
+	 * palette was changed. Rewriting the presets here is what keeps a
+	 * Gutenberg block, a sidebar widget and an Elementor section on one set
+	 * of colours.
+	 *
+	 * @param WP_Theme_JSON_Data $data Theme data being assembled.
+	 * @return WP_Theme_JSON_Data
+	 */
+	public function theme_json( $data ) {
+		if ( ! is_object( $data ) || ! method_exists( $data, 'update_with' ) ) {
+			return $data;
+		}
+
+		$primary   = mahan_option( 'color_primary' );
+		$secondary = mahan_option( 'color_secondary' );
+
+		$palette = array(
+			array( 'slug' => 'mahan-primary',    'name' => __( 'رنگ اصلی', 'mahan' ),   'color' => $primary ),
+			array( 'slug' => 'mahan-secondary',  'name' => __( 'رنگ دوم', 'mahan' ),    'color' => $secondary ),
+			array( 'slug' => 'mahan-accent',     'name' => __( 'رنگ تأکید', 'mahan' ),  'color' => mahan_option( 'color_accent' ) ),
+			array( 'slug' => 'mahan-success',    'name' => __( 'سبز', 'mahan' ),        'color' => mahan_option( 'color_success' ) ),
+			array( 'slug' => 'mahan-danger',     'name' => __( 'قرمز', 'mahan' ),       'color' => mahan_option( 'color_danger' ) ),
+			array( 'slug' => 'mahan-text',       'name' => __( 'متن', 'mahan' ),        'color' => mahan_option( 'color_text' ) ),
+			array( 'slug' => 'mahan-muted',      'name' => __( 'متن کم‌رنگ', 'mahan' ), 'color' => mahan_option( 'color_muted' ) ),
+			array( 'slug' => 'mahan-surface',    'name' => __( 'سطح', 'mahan' ),        'color' => mahan_option( 'color_surface' ) ),
+			array( 'slug' => 'mahan-background', 'name' => __( 'پس‌زمینه', 'mahan' ),   'color' => mahan_option( 'color_background' ) ),
+			array( 'slug' => 'mahan-border',     'name' => __( 'خط', 'mahan' ),         'color' => mahan_option( 'color_border' ) ),
+		);
+
+		$gradients = array(
+			array(
+				'slug'     => 'mahan-brand',
+				'name'     => __( 'گرادیان برند', 'mahan' ),
+				'gradient' => sprintf( 'linear-gradient(135deg, %1$s 0%%, %2$s 100%%)', $primary, $secondary ),
+			),
+			array(
+				'slug'     => 'mahan-soft',
+				'name'     => __( 'گرادیان ملایم', 'mahan' ),
+				'gradient' => sprintf(
+					'linear-gradient(135deg, rgba(%1$s,.12) 0%%, rgba(%2$s,.12) 100%%)',
+					mahan_hex_to_rgb( $primary ),
+					mahan_hex_to_rgb( $secondary )
+				),
+			),
+		);
+
+		$data->update_with(
+			array(
+				'version'  => 2,
+				'settings' => array(
+					'color' => array(
+						'palette'   => $palette,
+						'gradients' => $gradients,
+					),
+				),
+				'styles'   => array(
+					'typography' => array(
+						'fontFamily' => Mahan_Options::font_stack(),
+						'fontSize'   => (int) mahan_option( 'font_size_base' ) . 'px',
+					),
+					'elements'   => array(
+						'button' => array(
+							'color'  => array(
+								'background' => $primary,
+								'text'       => mahan_contrast_color( $primary ),
+							),
+							// Matches the --mahan-radius-sm the theme's own buttons use.
+							'border' => array( 'radius' => max( 4, (int) round( (int) mahan_option( 'radius', 18 ) * 0.5 ) ) . 'px' ),
+						),
+					),
+				),
+			)
+		);
+
+		return $data;
 	}
 
 	/**

@@ -64,13 +64,14 @@ return array(
 				'_mahan_layout'      => 'full',
 				'_mahan_transparent' => '1',
 			),
-			'sections' => static function () {
+			'sections' => static function ( $media ) {
 				return Mahan_Elementor_Builder::make()
 					->row(
 						array(
 							mahan_el(
 								'hero-banner',
 								array(
+									'image' => $media->wide( 0 ),
 									'layout'          => 'center',
 									'eyebrow'         => __( 'رستوران و کافه', 'mahan' ),
 									'title'           => __( 'طعمی که به یاد می‌ماند', 'mahan' ),
@@ -133,6 +134,7 @@ return array(
 							mahan_el(
 								'gallery-grid',
 								array(
+									'images' => $media->gallery( 'card', 6, 0 ),
 									'title'           => __( 'گالری تصاویر', 'mahan' ),
 									'title_highlight' => 1,
 									'layout'          => 'mosaic',
@@ -147,6 +149,7 @@ return array(
 							mahan_el(
 								'video-popup',
 								array(
+									'poster' => $media->wide( 1 ),
 									'title' => __( 'یک روز در آشپزخانهٔ ما', 'mahan' ),
 									'text'  => __( 'ببینید غذای شما چطور آماده می‌شود.', 'mahan' ),
 								)
@@ -185,7 +188,7 @@ return array(
 		),
 		'menu'    => array(
 			'title'    => __( 'منو', 'mahan' ),
-			'sections' => static function () {
+			'sections' => static function ( $media ) {
 				return Mahan_Elementor_Builder::make()
 					->row(
 						array(
@@ -205,13 +208,14 @@ return array(
 		),
 		'about'   => array(
 			'title'    => __( 'دربارهٔ ما', 'mahan' ),
-			'sections' => static function () {
+			'sections' => static function ( $media ) {
 				return Mahan_Elementor_Builder::make()
 					->row(
 						array(
 							mahan_el(
 								'feature-grid',
 								array(
+									'image' => $media->card( 1 ),
 									'title'           => __( 'داستان ما', 'mahan' ),
 									'title_highlight' => 1,
 									'heading_align'   => 'right',
@@ -237,7 +241,7 @@ return array(
 		),
 		'contact' => array(
 			'title'    => __( 'رزرو و تماس', 'mahan' ),
-			'sections' => static function () {
+			'sections' => static function ( $media ) {
 				return Mahan_Elementor_Builder::make()
 					->row(
 						array(

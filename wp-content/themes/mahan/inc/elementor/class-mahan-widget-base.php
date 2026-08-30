@@ -492,6 +492,35 @@ abstract class Mahan_Widget_Base extends Widget_Base {
 	}
 
 	/**
+	 * Resolves an Elementor media control value to a URL.
+	 *
+	 * A media control stores both the attachment ID and the URL captured at
+	 * the moment the image was picked. The ID is the durable half: it still
+	 * resolves after the site moves to a new domain, where the saved URL goes
+	 * on pointing at the old one. So the attachment is asked first, and the
+	 * stored URL stays as the fallback that covers images with no ID at all.
+	 *
+	 * @param mixed  $media Media control value.
+	 * @param string $size  Registered image size to request.
+	 * @return string Image URL, or an empty string when nothing is set.
+	 */
+	protected function image_url( $media, $size = 'full' ) {
+		if ( ! is_array( $media ) ) {
+			return '';
+		}
+
+		if ( ! empty( $media['id'] ) ) {
+			$url = wp_get_attachment_image_url( (int) $media['id'], $size );
+
+			if ( $url ) {
+				return $url;
+			}
+		}
+
+		return ! empty( $media['url'] ) ? $media['url'] : '';
+	}
+
+	/**
 	 * Builds link attributes from an Elementor URL control value.
 	 *
 	 * @param array $link Link control value.

@@ -77,13 +77,14 @@ return array(
 		'home'       => array(
 			'title'    => __( 'صفحهٔ اصلی', 'mahan' ),
 			'meta'     => array( '_mahan_layout' => 'full' ),
-			'sections' => static function () {
+			'sections' => static function ( $media ) {
 				return Mahan_Elementor_Builder::make()
 					->row(
 						array(
 							mahan_el(
 								'hero-banner',
 								array(
+									'image' => $media->wide( 0 ),
 									'layout'          => 'overlay',
 									'eyebrow'         => __( 'مشاور املاک ماهان', 'mahan' ),
 									'title'           => __( 'خانهٔ تازه‌تان را این‌جا پیدا کنید', 'mahan' ),
@@ -217,7 +218,7 @@ return array(
 		),
 		'properties' => array(
 			'title'    => __( 'ملک‌ها', 'mahan' ),
-			'sections' => static function () {
+			'sections' => static function ( $media ) {
 				return Mahan_Elementor_Builder::make()
 					->row(
 						array(
@@ -239,13 +240,14 @@ return array(
 		),
 		'about'      => array(
 			'title'    => __( 'دربارهٔ ما', 'mahan' ),
-			'sections' => static function () {
+			'sections' => static function ( $media ) {
 				return Mahan_Elementor_Builder::make()
 					->row(
 						array(
 							mahan_el(
 								'feature-grid',
 								array(
+									'image' => $media->card( 0 ),
 									'title'           => __( 'چرا ماهان؟', 'mahan' ),
 									'title_highlight' => 1,
 									'heading_align'   => 'right',
@@ -259,7 +261,7 @@ return array(
 		),
 		'contact'    => array(
 			'title'    => __( 'تماس با ما', 'mahan' ),
-			'sections' => static function () {
+			'sections' => static function ( $media ) {
 				return Mahan_Elementor_Builder::make()
 					->row(
 						array(

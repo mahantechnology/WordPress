@@ -113,8 +113,8 @@ class Mahan_Widget_before_after extends Mahan_Widget_Base {
 	 */
 	protected function render() {
 		$settings = $this->get_settings_for_display();
-		$before   = isset( $settings['before_image']['url'] ) ? $settings['before_image']['url'] : '';
-		$after    = isset( $settings['after_image']['url'] ) ? $settings['after_image']['url'] : '';
+		$before   = $this->image_url( $settings['before_image'] );
+		$after    = $this->image_url( $settings['after_image'] );
 
 		if ( ! $before || ! $after ) {
 			return;
