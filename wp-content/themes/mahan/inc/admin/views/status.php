@@ -32,11 +32,36 @@ $mahan_memory_ok = $mahan_memory <= 0 || $mahan_memory >= 128;
 $mahan_uploads   = wp_upload_dir();
 $mahan_writable  = empty( $mahan_uploads['error'] ) && wp_is_writable( $mahan_uploads['basedir'] );
 
+$mahan_license = mahan_license();
+
 $mahan_rows = array(
 	array(
 		'label' => __( 'نسخهٔ قالب', 'mahan' ),
 		'value' => mahan_fa_numbers( MAHAN_VERSION ),
 		'state' => 'ok',
+	),
+	array(
+		'label' => __( 'لایسنس', 'mahan' ),
+		'value' => $mahan_license->is_active() ? __( 'فعال', 'mahan' ) : __( 'فعال نشده', 'mahan' ),
+		'state' => $mahan_state( $mahan_license->is_active() ),
+		'note'  => $mahan_license->is_active()
+			? sprintf(
+				/* translators: 1: masked licence key, 2: last check date. */
+				__( 'کلید %1$s · آخرین بررسی: %2$s', 'mahan' ),
+				$mahan_license->masked_key(),
+				$mahan_license->checked_at() ? mahan_fa_numbers( wp_date( 'Y/m/d H:i', $mahan_license->checked_at() ) ) : '—'
+			)
+			: __( 'تا فعال شدن لایسنس، قالب‌های آماده و المان‌های المنتور در دسترس نیستند.', 'mahan' ),
+	),
+	array(
+		'label' => __( 'اعتبار لایسنس', 'mahan' ),
+		'value' => $mahan_license->expiry()
+			? mahan_fa_numbers( $mahan_license->expiry() )
+			: ( $mahan_license->is_active() ? __( 'بدون محدودیت زمانی', 'mahan' ) : __( '—', 'mahan' ) ),
+		'state' => $mahan_license->expires_soon() ? 'warn' : $mahan_state( $mahan_license->is_active() ),
+		'note'  => $mahan_license->expires_soon()
+			? __( 'کمتر از یک ماه تا پایان اعتبار مانده است.', 'mahan' )
+			: '',
 	),
 	array(
 		'label' => __( 'نسخهٔ وردپرس', 'mahan' ),

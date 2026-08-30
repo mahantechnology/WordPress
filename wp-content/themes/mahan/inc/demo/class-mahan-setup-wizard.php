@@ -48,7 +48,7 @@ class Mahan_Setup_Wizard {
 	 * Bounces the legacy screen to the panel.
 	 */
 	public function redirect_to_panel() {
-		wp_safe_redirect( Mahan_Admin::url( 'starter-sites' ) );
+		wp_safe_redirect( mahan_is_licensed() ? Mahan_Admin::url( 'starter-sites' ) : Mahan_License_Screen::url() );
 		exit;
 	}
 
@@ -75,7 +75,8 @@ class Mahan_Setup_Wizard {
 
 		update_option( self::REDIRECT_OPTION, 1 );
 
-		wp_safe_redirect( Mahan_Admin::url() );
+		// Activation lands on the licence screen; the panel opens once the key checks out.
+		wp_safe_redirect( mahan_is_licensed() ? Mahan_Admin::url() : Mahan_License_Screen::url() );
 		exit;
 	}
 }

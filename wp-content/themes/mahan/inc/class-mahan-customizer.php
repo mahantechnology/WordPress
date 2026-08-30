@@ -27,8 +27,19 @@ class Mahan_Customizer {
 	 * @param WP_Customize_Manager $wp_customize Customizer manager.
 	 */
 	public function register( $wp_customize ) {
-		$wp_customize->get_setting( 'blogname' )->transport        = 'postMessage';
-		$wp_customize->get_setting( 'blogdescription' )->transport = 'postMessage';
+		// A locked copy gets no theme controls; the licence screen says why.
+		if ( ! mahan_is_licensed() ) {
+			return;
+		}
+
+		// Core normally registers both, but a plugin is free to drop either.
+		foreach ( array( 'blogname', 'blogdescription' ) as $core_setting ) {
+			$setting = $wp_customize->get_setting( $core_setting );
+
+			if ( $setting ) {
+				$setting->transport = 'postMessage';
+			}
+		}
 
 		$wp_customize->add_panel(
 			'mahan',

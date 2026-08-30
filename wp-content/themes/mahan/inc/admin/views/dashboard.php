@@ -80,6 +80,39 @@ $mahan_stats = array(
 	<?php endforeach; ?>
 </section>
 
+<?php
+$mahan_license = mahan_license();
+$mahan_days    = $mahan_license->days_left();
+?>
+<section class="mahan-panel__license">
+	<span class="mahan-panel__license-mark" aria-hidden="true"><?php mahan_icon_e( 'badge', 24 ); ?></span>
+
+	<div class="mahan-panel__license-body">
+		<strong><?php esc_html_e( 'لایسنس فعال است', 'mahan' ); ?></strong>
+		<span>
+			<span dir="ltr"><?php echo esc_html( $mahan_license->masked_key() ); ?></span>
+			<?php if ( $mahan_license->expiry() ) : ?>
+				·
+				<?php
+				printf(
+					/* translators: 1: expiry date, 2: number of days. */
+					esc_html__( 'اعتبار تا %1$s (%2$s روز دیگر)', 'mahan' ),
+					esc_html( mahan_fa_numbers( $mahan_license->expiry() ) ),
+					esc_html( mahan_fa_numbers( (string) max( 0, (int) $mahan_days ) ) )
+				);
+				?>
+			<?php else : ?>
+				· <?php esc_html_e( 'بدون محدودیت زمانی', 'mahan' ); ?>
+			<?php endif; ?>
+		</span>
+	</div>
+
+	<a class="mahan-panel__ghost-btn" href="<?php echo esc_url( Mahan_License_Screen::url() ); ?>">
+		<?php mahan_icon_e( 'key', 16 ); ?>
+		<span><?php esc_html_e( 'مدیریت لایسنس', 'mahan' ); ?></span>
+	</a>
+</section>
+
 <div class="mahan-panel__columns">
 	<section class="mahan-panel__card">
 		<h2><?php esc_html_e( 'وضعیت راه‌اندازی', 'mahan' ); ?></h2>

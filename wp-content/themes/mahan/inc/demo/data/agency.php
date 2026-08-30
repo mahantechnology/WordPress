@@ -140,7 +140,7 @@ return array(
 								)
 							),
 						),
-						mahan_el_padding( 0 )
+						mahan_el_full()
 					)
 					->row(
 						array(

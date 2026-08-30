@@ -53,6 +53,7 @@ final class Mahan_Theme {
 			'template-tags.php',
 			'class-mahan-options.php',
 			'class-mahan-schema.php',
+			'license/class-mahan-license.php',
 			'class-mahan-setup.php',
 			'class-mahan-assets.php',
 			'class-mahan-nav-walker.php',
@@ -76,6 +77,7 @@ final class Mahan_Theme {
 			'demo/class-mahan-setup-wizard.php',
 			'admin/class-mahan-elements-catalog.php',
 			'admin/class-mahan-admin.php',
+			'license/class-mahan-license-screen.php',
 		);
 
 		foreach ( $files as $file ) {
@@ -96,6 +98,8 @@ final class Mahan_Theme {
 	 */
 	private function boot_components() {
 		$classes = array(
+			// First: every other component asks it whether the theme is unlocked.
+			'Mahan_License',
 			'Mahan_Setup',
 			'Mahan_Assets',
 			'Mahan_Post_Types',
@@ -113,6 +117,7 @@ final class Mahan_Theme {
 			'Mahan_Demo_Importer',
 			'Mahan_Setup_Wizard',
 			'Mahan_Admin',
+			'Mahan_License_Screen',
 		);
 
 		if ( mahan_has_woocommerce() ) {

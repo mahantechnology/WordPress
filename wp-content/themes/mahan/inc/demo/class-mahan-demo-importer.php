@@ -72,6 +72,10 @@ class Mahan_Demo_Importer {
 	 * Runs one import step for the wizard.
 	 */
 	public function ajax_step() {
+		if ( ! mahan_is_licensed() ) {
+			wp_send_json_error( array( 'message' => __( 'برای نصب قالب‌های آماده، ابتدا لایسنس قالب ماهان را فعال کنید.', 'mahan' ) ), 403 );
+		}
+
 		if ( ! current_user_can( 'import' ) || ! current_user_can( 'edit_theme_options' ) ) {
 			wp_send_json_error( array( 'message' => __( 'شما اجازهٔ درون‌ریزی ندارید.', 'mahan' ) ), 403 );
 		}

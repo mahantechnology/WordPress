@@ -295,6 +295,24 @@ function mahan_el_padding( $top, $bottom = null ) {
 }
 
 /**
+ * Shorthand for a section that runs edge to edge.
+ *
+ * A hero sitting under a transparent header has to reach the viewport edges.
+ * In a boxed section the page background shows either side of it, and the
+ * header's white logo and menu land on that light strip and vanish.
+ *
+ * @param int $top    Top padding in pixels.
+ * @param int $bottom Bottom padding in pixels.
+ * @return array
+ */
+function mahan_el_full( $top = 0, $bottom = 0 ) {
+	return array_merge(
+		mahan_el_padding( $top, $bottom ),
+		array( 'layout' => 'full_width' )
+	);
+}
+
+/**
  * Shorthand for a section with a tinted background.
  *
  * @param string $color Background colour.

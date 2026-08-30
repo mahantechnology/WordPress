@@ -336,6 +336,18 @@ class Mahan_Admin {
 	}
 
 	/**
+	 * Stops a locked copy from writing settings through a direct POST.
+	 */
+	private function require_license() {
+		if ( mahan_is_licensed() ) {
+			return;
+		}
+
+		wp_safe_redirect( Mahan_License_Screen::url() );
+		exit;
+	}
+
+	/**
 	 * Stores the settings form.
 	 */
 	public function save_settings() {
@@ -344,6 +356,8 @@ class Mahan_Admin {
 		if ( ! current_user_can( self::CAPABILITY ) ) {
 			wp_die( esc_html__( 'دسترسی لازم را ندارید.', 'mahan' ) );
 		}
+
+		$this->require_license();
 
 		$group  = isset( $_POST['mahan_group'] ) ? sanitize_key( wp_unslash( $_POST['mahan_group'] ) ) : '';
 		$fields = Mahan_Schema::group( $group );
@@ -396,6 +410,8 @@ class Mahan_Admin {
 			wp_die( esc_html__( 'دسترسی لازم را ندارید.', 'mahan' ) );
 		}
 
+		$this->require_license();
+
 		Mahan_Options::reset();
 
 		$this->redirect( 'settings', 'reset' );
@@ -410,6 +426,8 @@ class Mahan_Admin {
 		if ( ! current_user_can( self::CAPABILITY ) ) {
 			wp_die( esc_html__( 'دسترسی لازم را ندارید.', 'mahan' ) );
 		}
+
+		$this->require_license();
 
 		$payload = array(
 			'theme'    => 'mahan',
@@ -435,6 +453,8 @@ class Mahan_Admin {
 		if ( ! current_user_can( self::CAPABILITY ) ) {
 			wp_die( esc_html__( 'دسترسی لازم را ندارید.', 'mahan' ) );
 		}
+
+		$this->require_license();
 
 		if ( empty( $_FILES['mahan_settings_file']['tmp_name'] ) ) {
 			$this->redirect( 'settings', 'badimport' );

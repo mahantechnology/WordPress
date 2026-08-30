@@ -327,6 +327,10 @@ function mahan_icon_set() {
 		'map-pin'     => '<path d="M20 10.5c0 5.5-8 12-8 12s-8-6.5-8-12a8 8 0 1 1 16 0Z"/><circle cx="12" cy="10.5" r="2.8"/>',
 		'truck'       => '<path d="M2.5 7.5A1.5 1.5 0 0 1 4 6h8.5v10H2.5Z"/><path d="M12.5 9.5H17l3.5 3.5V16h-8Z"/><circle cx="6.5" cy="18" r="1.8"/><circle cx="17" cy="18" r="1.8"/>',
 		'shield'      => '<path d="M12 2.8 4.5 6v6c0 4.6 3.2 8.2 7.5 9.2 4.3-1 7.5-4.6 7.5-9.2V6Z"/><path d="m9 12 2.2 2.2L15.5 10"/>',
+		'lock'        => '<rect x="4.5" y="10.5" width="15" height="10" rx="2.4"/><path d="M8 10.5V7.8a4 4 0 0 1 8 0v2.7"/><circle cx="12" cy="15.5" r="1.4"/>',
+		'unlock'      => '<rect x="4.5" y="10.5" width="15" height="10" rx="2.4"/><path d="M8 10.5V7.8a4 4 0 0 1 7.6-1.7"/><circle cx="12" cy="15.5" r="1.4"/>',
+		'key'         => '<circle cx="7.8" cy="15.6" r="3.6"/><path d="m10.6 13.2 8-8M16.4 7.4l2 2M14 9.8l2 2"/>',
+		'badge'       => '<path d="M12 2.8 14.6 6l4-.2-.2 4L21 12.4l-2.6 2.6.2 4-4-.2L12 21.4l-2.6-2.6-4 .2.2-4L3 12.4 5.6 9.8l-.2-4 4 .2Z"/><path d="m9.4 12.4 1.9 1.9 3.5-3.9"/>',
 		'headphones'  => '<path d="M4 15v-3a8 8 0 0 1 16 0v3"/><path d="M20 15.5a2.5 2.5 0 0 1-2.5 2.5H17v-6h.5A2.5 2.5 0 0 1 20 14.5ZM4 15.5A2.5 2.5 0 0 0 6.5 18H7v-6h-.5A2.5 2.5 0 0 0 4 14.5Z"/>',
 		'gift'        => '<rect x="3" y="9" width="18" height="12" rx="2"/><path d="M3 13h18M12 9v12"/><path d="M12 9S10.8 4 8.2 4a2.2 2.2 0 0 0 0 5m3.8 0s1.2-5 3.8-5a2.2 2.2 0 0 1 0 5"/>',
 		'sparkles'    => '<path d="m12 3 1.7 4.6L18.3 9l-4.6 1.7L12 15.3l-1.7-4.6L5.7 9l4.6-1.4Z"/><path d="M18.5 15.5 19.4 18l2.5.9-2.5.9-.9 2.5-.9-2.5-2.5-.9 2.5-.9Z"/>',
@@ -468,4 +472,25 @@ function mahan_thumbnail( $post_id, $size = 'mahan-card', $attr = array() ) {
  */
 function mahan_sanitize_choice( $value, array $allowed ) {
 	return in_array( $value, $allowed, true ) ? $value : reset( $allowed );
+}
+
+/**
+ * The licence client.
+ *
+ * @return Mahan_License
+ */
+function mahan_license() {
+	return Mahan_License::instance();
+}
+
+/**
+ * Whether this copy of the theme is licensed.
+ *
+ * Every protected feature asks this one question, so a change to the licence
+ * rules only ever has to happen in Mahan_License::is_active().
+ *
+ * @return bool
+ */
+function mahan_is_licensed() {
+	return mahan_license()->is_active();
 }

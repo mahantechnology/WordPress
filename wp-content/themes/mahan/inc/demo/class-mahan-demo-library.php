@@ -107,6 +107,46 @@ class Mahan_Demo_Library {
 				'requires'    => array( 'elementor' ),
 				'tags'        => array( __( 'آژانس', 'mahan' ), __( 'خلاق', 'mahan' ) ),
 			),
+			'gym'        => array(
+				'label'       => __( 'باشگاه و تناسب اندام', 'mahan' ),
+				'description' => __( 'برنامهٔ کلاس‌ها، معرفی مربیان، پلن‌های عضویت و شمارش دستاوردها.', 'mahan' ),
+				'icon'        => 'lightning',
+				'palette'     => 'midnight',
+				'requires'    => array( 'elementor' ),
+				'tags'        => array( __( 'ورزشی', 'mahan' ), __( 'باشگاه', 'mahan' ), __( 'سلامت', 'mahan' ) ),
+			),
+			'travel'     => array(
+				'label'       => __( 'آژانس گردشگری', 'mahan' ),
+				'description' => __( 'تورهای داخلی و خارجی، مقصدهای محبوب، گالری سفر و فرم رزرو.', 'mahan' ),
+				'icon'        => 'globe',
+				'palette'     => 'turquoise',
+				'requires'    => array( 'elementor' ),
+				'tags'        => array( __( 'گردشگری', 'mahan' ), __( 'سفر', 'mahan' ), __( 'خدماتی', 'mahan' ) ),
+			),
+			'law'        => array(
+				'label'       => __( 'دفتر وکالت و حقوقی', 'mahan' ),
+				'description' => __( 'زمینه‌های تخصص، معرفی وکلا، پرونده‌های موفق و درخواست مشاوره.', 'mahan' ),
+				'icon'        => 'shield',
+				'palette'     => 'graphite',
+				'requires'    => array( 'elementor' ),
+				'tags'        => array( __( 'حقوقی', 'mahan' ), __( 'وکالت', 'mahan' ), __( 'خدماتی', 'mahan' ) ),
+			),
+			'building'   => array(
+				'label'       => __( 'ساختمانی و معماری', 'mahan' ),
+				'description' => __( 'پروژه‌های اجراشده، خدمات پیمانکاری، مراحل کار و تیم مهندسی.', 'mahan' ),
+				'icon'        => 'building',
+				'palette'     => 'saffron',
+				'requires'    => array( 'elementor' ),
+				'tags'        => array( __( 'ساختمانی', 'mahan' ), __( 'معماری', 'mahan' ), __( 'شرکتی', 'mahan' ) ),
+			),
+			'beauty'     => array(
+				'label'       => __( 'سالن زیبایی و اسپا', 'mahan' ),
+				'description' => __( 'خدمات و تعرفه‌ها، نوبت‌دهی آنلاین، گالری کارها و معرفی متخصص‌ها.', 'mahan' ),
+				'icon'        => 'heart',
+				'palette'     => 'sakura',
+				'requires'    => array( 'elementor' ),
+				'tags'        => array( __( 'زیبایی', 'mahan' ), __( 'اسپا', 'mahan' ), __( 'خدماتی', 'mahan' ) ),
+			),
 		);
 
 		foreach ( $demos as $id => $demo ) {

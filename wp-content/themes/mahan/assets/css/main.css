@@ -179,7 +179,11 @@ textarea {
 	margin-inline: auto;
 }
 
-.mahan-layout-full .mahan-container,
+/* The full-width page layout is about the content container. Scoping it to
+ * .mahan-layout keeps the header and footer containers at their normal width;
+ * unscoped, it stretched them edge to edge and pushed the logo off screen. */
+
+.mahan-layout-full .mahan-container.mahan-layout,
 .mahan-elementor-page .mahan-layout {
 	width: 100%;
 	padding-block: 0;

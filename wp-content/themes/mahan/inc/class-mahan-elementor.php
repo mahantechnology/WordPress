@@ -89,6 +89,28 @@ class Mahan_Elementor {
 	}
 
 	/**
+	 * Whether this request is Elementor's editor rather than a page view.
+	 *
+	 * Registration runs on both, and in the editor it runs over admin-ajax
+	 * before edit mode is settled, so the request itself has to be read.
+	 *
+	 * @return bool
+	 */
+	private function is_builder_request() {
+		if ( mahan_is_elementor_editor() ) {
+			return true;
+		}
+
+		$action = isset( $_REQUEST['action'] ) ? sanitize_key( wp_unslash( $_REQUEST['action'] ) ) : ''; // phpcs:ignore WordPress.Security.NonceVerification.Recommended -- Read-only context check.
+
+		if ( in_array( $action, array( 'elementor', 'elementor_ajax' ), true ) ) {
+			return true;
+		}
+
+		return is_admin() && ! wp_doing_cron();
+	}
+
+	/**
 	 * Adds the "Mahan" panel category.
 	 *
 	 * @param \Elementor\Elements_Manager $manager Elements manager.
@@ -121,6 +143,14 @@ class Mahan_Elementor {
 	 * @param \Elementor\Widgets_Manager $manager Widgets manager.
 	 */
 	public function register_widgets( $manager ) {
+		// Locked copies keep rendering whatever is already on the page, but the
+		// elements are withheld from the editor so nothing new can be built
+		// with them. Pulling them from the front end too would blank out a
+		// live site the moment a licence lapsed.
+		if ( ! mahan_is_licensed() && $this->is_builder_request() ) {
+			return;
+		}
+
 		require_once MAHAN_INC . 'elementor/class-mahan-widget-base.php';
 		require_once MAHAN_INC . 'elementor/trait-mahan-query.php';
 
