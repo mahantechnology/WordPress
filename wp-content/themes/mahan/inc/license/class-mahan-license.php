@@ -341,7 +341,18 @@ final class Mahan_License {
 				return $this->result( false, $reasons[ $answer['status'] ] );
 			}
 
-			return $this->result( false, $answer['message'] ? $answer['message'] : __( 'این لایسنس معتبر نیست یا برای محصول دیگری صادر شده است.', 'mahan' ) );
+			// Name the product in the message: a mismatch between the name
+			// registered in the licence manager and the one sent from here is
+			// the usual cause, and it is invisible otherwise.
+			return $this->result(
+				false,
+				sprintf(
+					/* translators: 1: reason from the licence server, 2: product name sent with the request. */
+					__( '%1$s (این سایت با نام محصول «%2$s» درخواست می‌دهد.)', 'mahan' ),
+					$answer['message'] ? $answer['message'] : __( 'این لایسنس معتبر نیست یا برای محصول دیگری صادر شده است.', 'mahan' ),
+					self::product()
+				)
+			);
 		}
 
 		$this->save(

@@ -358,6 +358,26 @@ class Mahan_License_Screen {
 					<?php endforeach; ?>
 				</ul>
 
+				<div class="mahan-lic__connection">
+					<h3><?php esc_html_e( 'مشخصات این نصب', 'mahan' ); ?></h3>
+					<p><?php esc_html_e( 'لایسنس باید در پنل ماهان تکنولوژی دقیقاً با همین نام محصول صادر شده باشد.', 'mahan' ); ?></p>
+
+					<dl>
+						<div>
+							<dt><?php esc_html_e( 'نام محصول', 'mahan' ); ?></dt>
+							<dd><code dir="ltr"><?php echo esc_html( Mahan_License::product() ); ?></code></dd>
+						</div>
+						<div>
+							<dt><?php esc_html_e( 'سرور بررسی', 'mahan' ); ?></dt>
+							<dd><code dir="ltr"><?php echo esc_html( (string) wp_parse_url( Mahan_License::endpoint(), PHP_URL_HOST ) ); ?></code></dd>
+						</div>
+						<div>
+							<dt><?php esc_html_e( 'دامنهٔ این سایت', 'mahan' ); ?></dt>
+							<dd><code dir="ltr"><?php echo esc_html( (string) wp_parse_url( home_url( '/' ), PHP_URL_HOST ) ); ?></code></dd>
+						</div>
+					</dl>
+				</div>
+
 				<div class="mahan-lic__aside-foot">
 					<p><?php esc_html_e( 'کلید لایسنس ندارید؟', 'mahan' ); ?></p>
 					<a class="mahan-lic__aside-link" href="https://mahantechnology.com/" target="_blank" rel="noopener">
