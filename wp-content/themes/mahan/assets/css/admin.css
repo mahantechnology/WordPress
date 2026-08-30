@@ -1,0 +1,61 @@
+/*
+ * Admin styles: the page-settings metabox and the recommended-plugins notice.
+ */
+
+.mahan-metabox__field {
+	margin-bottom: 14px;
+}
+
+.mahan-metabox__field label strong {
+	display: block;
+	margin-bottom: 4px;
+}
+
+.mahan-metabox__reset {
+	font-size: 12px;
+	color: #646970;
+}
+
+.mahan-metabox input[type="color"] {
+	width: 56px;
+	height: 34px;
+	padding: 2px;
+	vertical-align: middle;
+	border: 1px solid #dcdcde;
+	border-radius: 4px;
+	background: #fff;
+}
+
+.mahan-plugin-notice {
+	border-inline-start-width: 4px;
+	padding-bottom: 8px;
+}
+
+.mahan-plugin-notice h3 {
+	margin: 12px 0 8px;
+}
+
+.mahan-plugin-notice ul {
+	margin: 0 0 12px;
+	padding-inline-start: 18px;
+	list-style: disc;
+}
+
+.mahan-plugin-notice li {
+	margin-bottom: 6px;
+}
+
+.mahan-plugin-notice li .button {
+	margin-inline-start: 8px;
+}
+
+.mahan-menu-fields {
+	padding-top: 6px;
+	border-top: 1px solid #f0f0f1;
+	margin-top: 6px;
+}
+
+.mahan-menu-fields select,
+.mahan-menu-fields input[type="text"] {
+	max-width: 100%;
+}

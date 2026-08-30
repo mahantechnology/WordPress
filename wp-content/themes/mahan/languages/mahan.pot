@@ -1,0 +1,18 @@
+# Copyright (C) 2026 Mahan Technology
+# This file is distributed under the GNU General Public License v2 or later.
+msgid ""
+msgstr ""
+"Project-Id-Version: Mahan 1.0.0\n"
+"Report-Msgid-Bugs-To: https://github.com/mahantechnology/wordpress/issues\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"POT-Creation-Date: 2026-01-01T00:00:00+00:00\n"
+"X-Generator: Mahan\n"
+"X-Domain: mahan\n"
+"Language-Team: Persian\n"
+"Plural-Forms: nplurals=2; plural=(n > 1);\n"
+
+#. The theme's source strings are already written in Persian, so a fa_IR
+#. catalogue is not required. This template exists so other locales can be
+#. produced with the usual `wp i18n make-pot` workflow.

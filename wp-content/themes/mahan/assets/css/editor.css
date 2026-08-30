@@ -1,0 +1,72 @@
+/*
+ * Block editor styles, so the editing surface matches the front end.
+ *
+ * The custom properties are printed into the editor by
+ * Mahan_Assets::block_editor(), scoped to .editor-styles-wrapper.
+ */
+
+.editor-styles-wrapper {
+	font-family: var(--mahan-font, Tahoma, sans-serif);
+	font-size: var(--mahan-fs-base, 16px);
+	line-height: var(--mahan-lh, 1.9);
+	color: var(--mahan-text, #1f2937);
+	background: var(--mahan-bg, #f6f7fb);
+	direction: rtl;
+}
+
+.editor-styles-wrapper .wp-block {
+	max-width: 760px;
+}
+
+.editor-styles-wrapper .wp-block[data-align="wide"] {
+	max-width: 1100px;
+}
+
+.editor-styles-wrapper .wp-block[data-align="full"] {
+	max-width: none;
+}
+
+.editor-styles-wrapper h1,
+.editor-styles-wrapper h2,
+.editor-styles-wrapper h3,
+.editor-styles-wrapper h4,
+.editor-styles-wrapper h5,
+.editor-styles-wrapper h6 {
+	font-weight: var(--mahan-heading-weight, 700);
+	line-height: 1.45;
+	letter-spacing: -.01em;
+}
+
+.editor-styles-wrapper h1 { font-size: var(--mahan-fs-h1, 38px); }
+.editor-styles-wrapper h2 { font-size: var(--mahan-fs-h2, 32px); }
+.editor-styles-wrapper h3 { font-size: var(--mahan-fs-h3, 26px); }
+.editor-styles-wrapper h4 { font-size: var(--mahan-fs-h4, 22px); }
+
+.editor-styles-wrapper a {
+	color: var(--mahan-primary, #4f46e5);
+}
+
+.editor-styles-wrapper blockquote {
+	padding: 20px 24px;
+	border-inline-start: 4px solid var(--mahan-primary, #4f46e5);
+	background: var(--mahan-surface-2, #eef1f7);
+	border-radius: 10px;
+}
+
+.editor-styles-wrapper pre {
+	direction: ltr;
+	text-align: left;
+	background: #0f172a;
+	color: #e2e8f0;
+	padding: 18px;
+	border-radius: 10px;
+}
+
+.editor-styles-wrapper img {
+	border-radius: var(--mahan-radius, 18px);
+}
+
+.editor-styles-wrapper table th,
+.editor-styles-wrapper table td {
+	text-align: start;
+}

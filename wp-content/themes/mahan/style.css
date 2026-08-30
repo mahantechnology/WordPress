@@ -1,0 +1,32 @@
+/*
+Theme Name:        Mahan
+Theme URI:         https://github.com/mahantechnology/wordpress
+Description:       قالب چندمنظوره، سریع و کاملاً فارسی «ماهان» با پشتیبانی کامل از راست‌چین، المنتور و ووکامرس. شامل ده‌ها المان اختصاصی و مجموعه‌ای از قالب‌های آماده برای حوزه‌های مختلف که هنگام نصب می‌توانید یکی را انتخاب کنید. — Mahan is a fast, fully–Persian (RTL first) multipurpose WordPress theme with deep Elementor and WooCommerce integration, dozens of custom elements and a one–click starter‑site library.
+Author:            Mahan Technology
+Author URI:        https://github.com/mahantechnology
+Version:           1.0.0
+Requires at least: 6.0
+Tested up to:      6.8
+Requires PHP:      7.4
+License:           GNU General Public License v2 or later
+License URI:       http://www.gnu.org/licenses/gpl-2.0.html
+Text Domain:       mahan
+Domain Path:       /languages
+Tags:              rtl-language-support, e-commerce, blog, portfolio, news, translation-ready, custom-colors, custom-logo, custom-menu, featured-images, threaded-comments, full-width-template, block-styles, wide-blocks
+
+Mahan WordPress Theme, (C) 2026 Mahan Technology.
+Mahan is distributed under the terms of the GNU GPL v2 or later.
+
+The Vazirmatn webfont bundled in assets/fonts/vazirmatn is licensed under the
+SIL Open Font License 1.1 — see assets/fonts/vazirmatn/OFL.txt.
+*/
+
+/*
+ * This file only carries the theme header required by WordPress.
+ * All presentation lives in assets/css/ and is enqueued from inc/class-mahan-assets.php:
+ *
+ *   assets/css/main.css         design tokens, layout, typography, components
+ *   assets/css/rtl.css          right-to-left refinements (loaded by is_rtl())
+ *   assets/css/woocommerce.css  shop, product, cart and checkout styling
+ *   assets/css/elementor.css    styling for the Mahan Elementor elements
+ */

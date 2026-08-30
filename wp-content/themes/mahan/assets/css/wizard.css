@@ -1,0 +1,415 @@
+/*
+ * The Appearance → Mahan Setup screen.
+ */
+
+.mahan-wizard-page #wpcontent {
+	padding-inline-start: 0;
+}
+
+.mahan-wizard {
+	--wizard-primary: #4f46e5;
+	--wizard-surface: #fff;
+	--wizard-bg: #f4f5fa;
+	--wizard-border: #e3e5ef;
+	--wizard-text: #1f2937;
+	--wizard-muted: #6b7280;
+
+	max-width: 1240px;
+	margin: 0 auto;
+	padding: 28px 24px 60px;
+	font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Tahoma, sans-serif;
+	color: var(--wizard-text);
+}
+
+.mahan-wizard * {
+	box-sizing: border-box;
+}
+
+.mahan-wizard__header {
+	display: flex;
+	flex-wrap: wrap;
+	align-items: center;
+	justify-content: space-between;
+	gap: 20px;
+	padding: 26px 30px;
+	border-radius: 20px;
+	background: linear-gradient(135deg, #4f46e5, #0ea5e9);
+	color: #fff;
+	margin-bottom: 24px;
+}
+
+.mahan-wizard__brand {
+	display: flex;
+	align-items: center;
+	gap: 18px;
+}
+
+.mahan-wizard__logo {
+	display: grid;
+	place-items: center;
+	width: 62px;
+	height: 62px;
+	border-radius: 18px;
+	background: rgba(255, 255, 255, .18);
+	font-weight: 800;
+	font-size: 17px;
+	flex-shrink: 0;
+}
+
+.mahan-wizard__header h1 {
+	margin: 0 0 4px;
+	font-size: 24px;
+	color: #fff;
+}
+
+.mahan-wizard__header p {
+	margin: 0;
+	opacity: .9;
+	font-size: 14px;
+}
+
+.mahan-wizard__links {
+	display: flex;
+	gap: 8px;
+}
+
+.mahan-wizard__plugins {
+	display: grid;
+	grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+	gap: 12px;
+	margin-bottom: 24px;
+}
+
+.mahan-wizard__plugin {
+	display: flex;
+	align-items: center;
+	gap: 12px;
+	padding: 14px 16px;
+	border-radius: 14px;
+	background: var(--wizard-surface);
+	border: 1px solid var(--wizard-border);
+	font-size: 13px;
+}
+
+.mahan-wizard__plugin strong {
+	display: block;
+}
+
+.mahan-wizard__plugin span {
+	color: var(--wizard-muted);
+}
+
+.mahan-wizard__plugin .button {
+	margin-inline-start: auto;
+}
+
+.mahan-wizard__plugin-state {
+	display: grid;
+	place-items: center;
+	width: 30px;
+	height: 30px;
+	flex-shrink: 0;
+	border-radius: 50%;
+	background: #fef3c7;
+	color: #b45309;
+	font-weight: 800;
+}
+
+.mahan-wizard__plugin.is-active .mahan-wizard__plugin-state {
+	background: #dcfce7;
+	color: #15803d;
+}
+
+.mahan-wizard__notice {
+	display: flex;
+	flex-wrap: wrap;
+	align-items: center;
+	gap: 14px;
+	padding: 14px 18px;
+	margin-bottom: 22px;
+	border-radius: 14px;
+	background: #eef2ff;
+	border: 1px solid #c7d2fe;
+}
+
+.mahan-wizard__notice p {
+	margin: 0;
+}
+
+.mahan-wizard__grid {
+	display: grid;
+	grid-template-columns: repeat(auto-fill, minmax(290px, 1fr));
+	gap: 20px;
+}
+
+.mahan-demo-card {
+	display: flex;
+	flex-direction: column;
+	overflow: hidden;
+	border-radius: 18px;
+	background: var(--wizard-surface);
+	border: 1px solid var(--wizard-border);
+	transition: transform .2s ease, box-shadow .2s ease, border-color .2s ease;
+}
+
+.mahan-demo-card:hover {
+	transform: translateY(-4px);
+	box-shadow: 0 14px 34px rgba(15, 23, 42, .1);
+	border-color: #c7d2fe;
+}
+
+.mahan-demo-card.is-installed {
+	border-color: #86efac;
+}
+
+.mahan-demo-card__preview {
+	position: relative;
+	aspect-ratio: 16 / 10;
+	overflow: hidden;
+	background: var(--wizard-bg);
+}
+
+.mahan-demo-card__preview img {
+	width: 100%;
+	height: 100%;
+	object-fit: cover;
+	display: block;
+}
+
+.mahan-demo-card__installed {
+	position: absolute;
+	top: 12px;
+	inset-inline-start: 12px;
+	padding: 4px 12px;
+	border-radius: 99px;
+	background: #16a34a;
+	color: #fff;
+	font-size: 11px;
+	font-weight: 700;
+}
+
+.mahan-demo-card__body {
+	flex: 1;
+	padding: 18px 20px;
+	display: grid;
+	gap: 10px;
+	align-content: start;
+}
+
+.mahan-demo-card__title {
+	margin: 0;
+	font-size: 17px;
+}
+
+.mahan-demo-card__text {
+	margin: 0;
+	color: var(--wizard-muted);
+	font-size: 13px;
+	line-height: 1.9;
+}
+
+.mahan-demo-card__tags {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 6px;
+	margin: 0;
+	padding: 0;
+	list-style: none;
+}
+
+.mahan-demo-card__tags li {
+	margin: 0;
+	padding: 3px 11px;
+	border-radius: 99px;
+	background: #eef2ff;
+	color: #4338ca;
+	font-size: 11px;
+	font-weight: 600;
+}
+
+.mahan-demo-card__requires {
+	padding: 10px 12px;
+	border-radius: 10px;
+	background: #fffbeb;
+	border: 1px solid #fde68a;
+	font-size: 12px;
+	display: flex;
+	flex-wrap: wrap;
+	gap: 6px;
+	align-items: center;
+}
+
+.mahan-demo-card__footer {
+	padding: 0 20px 20px;
+}
+
+.mahan-demo-card__install {
+	width: 100%;
+	justify-content: center;
+	text-align: center;
+}
+
+.mahan-wizard__modal {
+	position: fixed;
+	inset: 0;
+	z-index: 100000;
+	display: grid;
+	place-items: center;
+	padding: 24px;
+	background: rgba(15, 23, 42, .6);
+}
+
+.mahan-wizard__modal[hidden] {
+	display: none;
+}
+
+.mahan-wizard__modal-inner {
+	width: min(520px, 100%);
+	padding: 30px;
+	border-radius: 20px;
+	background: #fff;
+	box-shadow: 0 24px 60px rgba(15, 23, 42, .3);
+}
+
+.mahan-wizard__modal-inner h2 {
+	margin: 0 0 20px;
+	font-size: 19px;
+}
+
+.mahan-wizard__steps {
+	display: grid;
+	gap: 10px;
+	margin: 0 0 18px;
+	padding: 0;
+	list-style: none;
+	counter-reset: none;
+}
+
+.mahan-wizard__steps li {
+	display: flex;
+	align-items: center;
+	gap: 12px;
+	margin: 0;
+	font-size: 14px;
+	color: var(--wizard-muted);
+	transition: color .2s ease;
+}
+
+.mahan-wizard__step-icon {
+	display: grid;
+	place-items: center;
+	width: 24px;
+	height: 24px;
+	flex-shrink: 0;
+	border-radius: 50%;
+	border: 2px solid var(--wizard-border);
+	background: #fff;
+}
+
+.mahan-wizard__steps li.is-running {
+	color: var(--wizard-text);
+	font-weight: 600;
+}
+
+.mahan-wizard__steps li.is-running .mahan-wizard__step-icon {
+	border-color: var(--wizard-primary);
+	border-top-color: transparent;
+	animation: mahan-wizard-spin .7s linear infinite;
+}
+
+.mahan-wizard__steps li.is-done {
+	color: #15803d;
+}
+
+.mahan-wizard__steps li.is-done .mahan-wizard__step-icon {
+	border-color: #16a34a;
+	background: #16a34a;
+}
+
+.mahan-wizard__steps li.is-done .mahan-wizard__step-icon::after {
+	content: '✓';
+	color: #fff;
+	font-size: 13px;
+	line-height: 1;
+}
+
+.mahan-wizard__steps li.is-failed {
+	color: #b91c1c;
+}
+
+.mahan-wizard__steps li.is-failed .mahan-wizard__step-icon {
+	border-color: #dc2626;
+	background: #dc2626;
+}
+
+.mahan-wizard__steps li.is-failed .mahan-wizard__step-icon::after {
+	content: '!';
+	color: #fff;
+	font-weight: 800;
+	font-size: 13px;
+	line-height: 1;
+}
+
+.mahan-wizard__status {
+	margin: 0 0 16px;
+	font-size: 13px;
+	color: var(--wizard-muted);
+	min-height: 20px;
+}
+
+.mahan-wizard__status.is-error {
+	color: #b91c1c;
+}
+
+.mahan-wizard__actions {
+	display: flex;
+	gap: 10px;
+}
+
+@keyframes mahan-wizard-spin {
+	to { transform: rotate(360deg); }
+}
+
+.mahan-wizard__help {
+	margin-top: 44px;
+}
+
+.mahan-wizard__help h2 {
+	margin: 0 0 18px;
+	font-size: 19px;
+}
+
+.mahan-wizard__help-grid {
+	display: grid;
+	grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+	gap: 16px;
+}
+
+.mahan-wizard__help-card {
+	padding: 20px;
+	border-radius: 16px;
+	background: var(--wizard-surface);
+	border: 1px solid var(--wizard-border);
+}
+
+.mahan-wizard__help-card h3 {
+	margin: 0 0 8px;
+	font-size: 15px;
+}
+
+.mahan-wizard__help-card p {
+	margin: 0 0 12px;
+	color: var(--wizard-muted);
+	font-size: 13px;
+	line-height: 1.9;
+}
+
+@media (max-width: 782px) {
+	.mahan-wizard {
+		padding-inline: 14px;
+	}
+
+	.mahan-wizard__header {
+		padding: 20px;
+	}
+}

@@ -1,0 +1,66 @@
+/*
+ * RTL refinements.
+ *
+ * main.css is written with logical properties (inset-inline, margin-inline,
+ * padding-inline), so most of the layout mirrors on its own. Only the rules
+ * below need a direction-aware override.
+ */
+
+.mahan-drawer__panel {
+	animation-name: mahan-slide-in-rtl;
+}
+
+@keyframes mahan-slide-in-rtl {
+	from { transform: translateX(100%); }
+	to   { transform: translateX(0); }
+}
+
+/* The mega panel is centred with a transform, which does not mirror itself. */
+.mahan-menu__mega {
+	transform: translateX(50%) translateY(8px);
+}
+
+.mahan-menu__item--mega:hover > .mahan-menu__mega,
+.mahan-menu__item--mega:focus-within > .mahan-menu__mega {
+	transform: translateX(50%) translateY(0);
+}
+
+/* Nested submenus open towards the start edge. */
+.mahan-menu__sub .mahan-menu__sub,
+.mahan-menu--vertical .mahan-menu__sub,
+.mahan-menu--vertical .mahan-menu__mega {
+	inset-inline-start: auto;
+	inset-inline-end: 100%;
+}
+
+/* Numbers, prices, code and phone numbers stay left-to-right inside RTL text. */
+.mahan-entry pre,
+.mahan-entry code,
+input[type="email"],
+input[type="url"],
+input[type="tel"],
+.woocommerce-Price-amount,
+.mahan-plan__amount,
+.mahan-counter__number {
+	direction: ltr;
+	unicode-bidi: embed;
+	text-align: right;
+}
+
+.mahan-entry pre {
+	text-align: left;
+}
+
+/* Progress bars fill from the start edge. */
+.mahan-progress__fill,
+.mahan-stock-bar__fill,
+.mahan-read-progress span {
+	inset-inline-start: 0;
+	inset-inline-end: auto;
+}
+
+/* The before/after handle is dragged along the inline axis. */
+.mahan-compare__before-wrap {
+	inset-inline-start: auto;
+	inset-inline-end: 0;
+}
