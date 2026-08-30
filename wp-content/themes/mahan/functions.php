@@ -10,7 +10,7 @@
 
 defined( 'ABSPATH' ) || exit;
 
-define( 'MAHAN_VERSION', '1.0.0' );
+define( 'MAHAN_VERSION', '1.0' );
 define( 'MAHAN_DIR', trailingslashit( get_template_directory() ) );
 define( 'MAHAN_URI', trailingslashit( get_template_directory_uri() ) );
 define( 'MAHAN_INC', MAHAN_DIR . 'inc/' );
