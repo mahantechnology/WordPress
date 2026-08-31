@@ -153,6 +153,37 @@
 	 * Sticky header
 	 * ---------------------------------------------------------------- */
 
+	/**
+	 * Publishes the header's height as --mahan-header-h.
+	 *
+	 * A transparent header is taken out of the flow, so the first section
+	 * starts at the very top of the page and slides under the bar. The
+	 * stylesheet uses this measurement to give that section clearance, and it
+	 * has to be measured rather than guessed: the height depends on the
+	 * layout, the top bar and whether a logo image is set.
+	 */
+	function initHeaderHeight() {
+		var header = $( '[data-mahan-header]' );
+
+		if ( ! header ) {
+			return;
+		}
+
+		function measure() {
+			document.documentElement.style.setProperty(
+				'--mahan-header-h',
+				Math.round( header.getBoundingClientRect().height ) + 'px'
+			);
+		}
+
+		measure();
+		window.addEventListener( 'resize', measure, { passive: true } );
+
+		if ( 'undefined' !== typeof ResizeObserver ) {
+			new ResizeObserver( measure ).observe( header );
+		}
+	}
+
 	function initStickyHeader() {
 		var header = $( '[data-mahan-header]' );
 
@@ -1180,11 +1211,153 @@
 	}
 
 	/* ---------------------------------------------------------------- *
+	 * Image accordion
+	 * ---------------------------------------------------------------- */
+
+	function initImageAccordion() {
+		$$( '[data-mahan-image-accordion]' ).forEach( function ( root ) {
+			var panels = $$( '[data-mahan-image-accordion-panel]', root );
+
+			function open( panel ) {
+				panels.forEach( function ( item ) {
+					item.classList.toggle( 'is-open', item === panel );
+				} );
+			}
+
+			panels.forEach( function ( panel ) {
+				on( panel, 'mouseenter', function () {
+					open( panel );
+				} );
+
+				// Keyboard and touch users get the same behaviour on focus.
+				on( panel, 'focusin', function () {
+					open( panel );
+				} );
+			} );
+		} );
+	}
+
+	/* ---------------------------------------------------------------- *
+	 * Image hotspots
+	 * ---------------------------------------------------------------- */
+
+	function initHotspots() {
+		on( document, 'click', function ( event ) {
+			var pin = event.target.closest( '[data-mahan-hotspot]' );
+			var open = $$( '.mahan-hotspots__spot.is-active' );
+
+			open.forEach( function ( spot ) {
+				if ( ! pin || spot !== pin.parentNode ) {
+					spot.classList.remove( 'is-active' );
+				}
+			} );
+
+			if ( pin ) {
+				event.preventDefault();
+				pin.parentNode.classList.toggle( 'is-active' );
+			}
+		} );
+	}
+
+	/* ---------------------------------------------------------------- *
+	 * Dismissible alerts
+	 * ---------------------------------------------------------------- */
+
+	function initDismiss() {
+		on( document, 'click', function ( event ) {
+			var button = event.target.closest( '[data-mahan-dismiss]' );
+
+			if ( ! button ) {
+				return;
+			}
+
+			var box = button.closest( '.mahan-alert' );
+
+			if ( box ) {
+				box.classList.add( 'is-dismissed' );
+			}
+		} );
+	}
+
+	/* ---------------------------------------------------------------- *
+	 * Table of contents
+	 * ---------------------------------------------------------------- */
+
+	function initTableOfContents() {
+		$$( '[data-mahan-toc]' ).forEach( function ( root ) {
+			var config;
+
+			try {
+				config = JSON.parse( root.getAttribute( 'data-mahan-toc' ) );
+			} catch ( error ) {
+				return;
+			}
+
+			var scope = null;
+
+			// The first selector that actually matches wins; a page built with
+			// Elementor keeps its content in a different wrapper than a classic one.
+			String( config.source || '' ).split( ',' ).some( function ( selector ) {
+				scope = document.querySelector( selector.trim() );
+				return !! scope;
+			} );
+
+			if ( ! scope ) {
+				return;
+			}
+
+			var list = $( '[data-mahan-toc-list]', root );
+			var headings = $$( ( config.levels || [ 'h2' ] ).join( ',' ), scope );
+			var made = 0;
+
+			headings.forEach( function ( heading, index ) {
+				var text = heading.textContent.trim();
+
+				if ( ! text ) {
+					return;
+				}
+
+				if ( ! heading.id ) {
+					heading.id = 'mahan-toc-' + index;
+				}
+
+				var item = document.createElement( 'li' );
+				var link = document.createElement( 'a' );
+
+				item.className = 'is-level-' + heading.tagName.toLowerCase();
+				link.href = '#' + heading.id;
+				link.textContent = text;
+
+				item.appendChild( link );
+				list.appendChild( item );
+				made++;
+			} );
+
+			// Nothing to point at: leave the box hidden rather than empty.
+			if ( ! made ) {
+				return;
+			}
+
+			root.hidden = false;
+
+			var toggle = $( '[data-mahan-toc-toggle]', root );
+
+			if ( toggle ) {
+				on( toggle, 'click', function () {
+					var collapsed = root.classList.toggle( 'is-collapsed' );
+					toggle.setAttribute( 'aria-expanded', collapsed ? 'false' : 'true' );
+				} );
+			}
+		} );
+	}
+
+	/* ---------------------------------------------------------------- *
 	 * Boot
 	 * ---------------------------------------------------------------- */
 
 	function boot() {
 		Panels.init();
+		initHeaderHeight();
 		initStickyHeader();
 		initMenuToggles();
 		initToggles();
@@ -1201,6 +1374,10 @@
 		initTypewriter();
 		initFilters();
 		initCompare();
+		initImageAccordion();
+		initHotspots();
+		initDismiss();
+		initTableOfContents();
 		initLightbox();
 		initWooCommerce();
 		initStickySidebar();

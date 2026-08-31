@@ -144,6 +144,8 @@ class Mahan_Options {
 			'social_twitter'          => '',
 			'social_youtube'          => '',
 			'social_aparat'           => '',
+			'header_cta_text'         => '',
+			'header_cta_url'          => '',
 			'contact_phone'           => '',
 			'contact_email'           => '',
 			'contact_address'         => '',

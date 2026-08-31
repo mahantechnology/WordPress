@@ -285,7 +285,19 @@ class Mahan_Schema {
 							'split'    => __( 'دو ردیفه', 'mahan' ),
 							'minimal'  => __( 'مینیمال', 'mahan' ),
 							'shop'     => __( 'فروشگاهی (با جستجوی بزرگ)', 'mahan' ),
+							'glass'    => __( 'شیشه‌ای شناور', 'mahan' ),
+							'gradient' => __( 'نوار گرادیانی', 'mahan' ),
+							'stack'    => __( 'لوگوی وسط، منوی زیر آن', 'mahan' ),
 						),
+					),
+					'header_cta_text'      => array(
+						'label'       => __( 'متن دکمهٔ فراخوان هدر', 'mahan' ),
+						'type'        => 'text',
+						'description' => __( 'خالی بگذارید تا دکمه‌ای نمایش داده نشود.', 'mahan' ),
+					),
+					'header_cta_url'       => array(
+						'label' => __( 'لینک دکمهٔ فراخوان هدر', 'mahan' ),
+						'type'  => 'url',
 					),
 					'header_sticky'        => array(
 						'label' => __( 'هدر چسبان هنگام اسکرول', 'mahan' ),
@@ -360,6 +372,9 @@ class Mahan_Schema {
 							'compact'  => __( 'فشرده', 'mahan' ),
 							'centered' => __( 'وسط‌چین', 'mahan' ),
 							'shop'     => __( 'فروشگاهی (با نمادها)', 'mahan' ),
+							'mega'     => __( 'بزرگ (با کارت تماس)', 'mahan' ),
+							'cta'      => __( 'با پنل فراخوان', 'mahan' ),
+							'minimal'  => __( 'مینیمال تک‌ردیفه', 'mahan' ),
 						),
 					),
 					'footer_columns'     => array(

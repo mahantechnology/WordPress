@@ -147,6 +147,46 @@ class Mahan_Demo_Library {
 				'requires'    => array( 'elementor' ),
 				'tags'        => array( __( 'زیبایی', 'mahan' ), __( 'اسپا', 'mahan' ), __( 'خدماتی', 'mahan' ) ),
 			),
+			'cafe'       => array(
+				'label'       => __( 'کافه و قهوه', 'mahan' ),
+				'description' => __( 'منوی قهوه با قیمت، ساعات کاری، گالری فضا و رزرو میز.', 'mahan' ),
+				'icon'        => 'utensils',
+				'palette'     => 'saffron',
+				'requires'    => array( 'elementor' ),
+				'tags'        => array( __( 'کافه', 'mahan' ), __( 'رستوران', 'mahan' ) ),
+			),
+			'saas'       => array(
+				'label'       => __( 'نرم‌افزار ابری', 'mahan' ),
+				'description' => __( 'معرفی سرویس با پلن‌های اشتراکی، امکانات، پرسش‌ها و ثبت‌نام رایگان.', 'mahan' ),
+				'icon'        => 'code',
+				'palette'     => 'royal',
+				'requires'    => array( 'elementor' ),
+				'tags'        => array( __( 'استارتاپ', 'mahan' ), __( 'نرم‌افزار', 'mahan' ), __( 'اپلیکیشن', 'mahan' ) ),
+			),
+			'nonprofit'  => array(
+				'label'       => __( 'خیریه و مردم‌نهاد', 'mahan' ),
+				'description' => __( 'معرفی کمپین‌ها، گزارش شفاف، داوطلبان و فراخوان مشارکت.', 'mahan' ),
+				'icon'        => 'heart',
+				'palette'     => 'emerald',
+				'requires'    => array( 'elementor' ),
+				'tags'        => array( __( 'خیریه', 'mahan' ), __( 'مردم‌نهاد', 'mahan' ), __( 'خدماتی', 'mahan' ) ),
+			),
+			'events'     => array(
+				'label'       => __( 'رویداد و همایش', 'mahan' ),
+				'description' => __( 'برنامهٔ سخنرانی‌ها، معرفی سخنرانان، بلیت‌ها و شمارش معکوس.', 'mahan' ),
+				'icon'        => 'calendar',
+				'palette'     => 'crimson',
+				'requires'    => array( 'elementor' ),
+				'tags'        => array( __( 'رویداد', 'mahan' ), __( 'همایش', 'mahan' ), __( 'آموزشی', 'mahan' ) ),
+			),
+			'photography' => array(
+				'label'       => __( 'عکاسی و استودیو', 'mahan' ),
+				'description' => __( 'گالری تمام‌قاب، بسته‌های عکاسی، نمونه‌کارها و فرم رزرو جلسه.', 'mahan' ),
+				'icon'        => 'camera',
+				'palette'     => 'graphite',
+				'requires'    => array( 'elementor' ),
+				'tags'        => array( __( 'عکاسی', 'mahan' ), __( 'نمونه‌کار', 'mahan' ), __( 'خلاق', 'mahan' ) ),
+			),
 		);
 
 		foreach ( $demos as $id => $demo ) {

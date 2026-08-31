@@ -60,7 +60,7 @@ class Mahan_Header {
 	 */
 	public function main() {
 		$layout = mahan_option( 'header_layout', 'classic' );
-		$layout = mahan_sanitize_choice( $layout, array( 'classic', 'centered', 'split', 'minimal', 'shop' ) );
+		$layout = mahan_sanitize_choice( $layout, array( 'classic', 'centered', 'split', 'minimal', 'shop', 'glass', 'gradient', 'stack' ) );
 
 		get_template_part( 'template-parts/header/layout', $layout );
 	}
@@ -175,6 +175,26 @@ class Mahan_Header {
 	}
 
 	/**
+	 * Prints the header's call-to-action button, when one is configured.
+	 */
+	public static function cta() {
+		$text = (string) mahan_option( 'header_cta_text' );
+
+		if ( '' === trim( $text ) ) {
+			return;
+		}
+
+		$url = (string) mahan_option( 'header_cta_url' );
+
+		printf(
+			'<a class="mahan-header__cta" href="%1$s">%2$s<span>%3$s</span></a>',
+			esc_url( $url ? $url : home_url( '/' ) ),
+			mahan_icon( 'lightning', 17 ), // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- Fixed icon set.
+			esc_html( $text )
+		);
+	}
+
+	/**
 	 * Prints the header action buttons (search, account, wishlist, cart).
 	 */
 	public static function actions() {
@@ -218,6 +238,8 @@ class Mahan_Header {
 		if ( mahan_has_woocommerce() && mahan_option( 'header_cart' ) ) {
 			get_template_part( 'template-parts/header/cart-button' );
 		}
+
+		self::cta();
 
 		printf(
 			'<button type="button" class="mahan-header__action mahan-header__burger" data-mahan-open="drawer" aria-label="%1$s" aria-expanded="false">%2$s</button>',

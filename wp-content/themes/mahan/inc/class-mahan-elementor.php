@@ -59,6 +59,26 @@ class Mahan_Elementor {
 		'service-grid',
 		'breadcrumb',
 		'search-box',
+		// Added in 1.1.
+		'feature-list',
+		'blockquote',
+		'alert-box',
+		'image-accordion',
+		'image-hotspots',
+		'counter-circle',
+		'price-list',
+		'opening-hours',
+		'trust-badges',
+		'event-list',
+		'download-list',
+		'job-list',
+		'table-of-contents',
+		'author-box',
+		'share-buttons',
+		'site-logo',
+		'nav-menu',
+		'page-title',
+		'post-meta',
 	);
 
 	/**

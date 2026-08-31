@@ -31,6 +31,8 @@ class Mahan_Elements_Catalog {
 					'typewriter'      => array( __( 'عنوان تایپی', 'mahan' ), __( 'عبارت‌های متغیر با افکت تایپ.', 'mahan' ) ),
 					'marquee'         => array( __( 'نوار متن متحرک', 'mahan' ), __( 'نوار پیوستهٔ راست‌به‌چپ یا برعکس.', 'mahan' ) ),
 					'divider'         => array( __( 'جداکنندهٔ تزئینی', 'mahan' ), __( 'پنج سبک، با آیکون میانی اختیاری.', 'mahan' ) ),
+					'alert-box'       => array( __( 'جعبهٔ توجه', 'mahan' ), __( 'پیام اطلاع، هشدار یا نکته، قابل بستن.', 'mahan' ) ),
+					'blockquote'      => array( __( 'نقل‌قول شاخص', 'mahan' ), __( 'نقل‌قول با گویندهٔ تصویردار در چهار سبک.', 'mahan' ) ),
 					'button-group'    => array( __( 'گروه دکمه‌ها', 'mahan' ), __( 'چند دکمه با سبک و آیکون مستقل.', 'mahan' ) ),
 				),
 			),
@@ -48,6 +50,8 @@ class Mahan_Elements_Catalog {
 					'card-flip'     => array( __( 'کارت چرخشی', 'mahan' ), __( 'با نگه داشتن نشانگر برمی‌گردد.', 'mahan' ) ),
 					'compare-table' => array( __( 'جدول مقایسه', 'mahan' ), __( 'مقایسهٔ پلن‌ها یا محصولات.', 'mahan' ) ),
 					'before-after'  => array( __( 'مقایسهٔ قبل و بعد', 'mahan' ), __( 'دستگیرهٔ کشویی روی دو تصویر.', 'mahan' ) ),
+					'feature-list'  => array( __( 'فهرست ویژگی‌ها', 'mahan' ), __( 'چک‌لیست با آیکون، در چهار سبک.', 'mahan' ) ),
+					'table-of-contents' => array( __( 'فهرست مطالب', 'mahan' ), __( 'از روی عنوان‌های خود صفحه ساخته می‌شود.', 'mahan' ) ),
 				),
 			),
 			'proof'   => array(
@@ -60,6 +64,7 @@ class Mahan_Elements_Catalog {
 					'team-grid'             => array( __( 'اعضای تیم', 'mahan' ), __( 'سه سبک، با شبکه‌های اجتماعی.', 'mahan' ) ),
 					'logo-carousel'         => array( __( 'لوگوی مشتریان', 'mahan' ), __( 'اسلایدر با حالت سیاه‌وسفید.', 'mahan' ) ),
 					'pricing-table'         => array( __( 'جدول قیمت‌گذاری', 'mahan' ), __( 'با پلن پیشنهادی و ویژگی‌های فعال/غیرفعال.', 'mahan' ) ),
+					'counter-circle'        => array( __( 'شمارندهٔ دایره‌ای', 'mahan' ), __( 'حلقه‌های درصدی با انیمیشن پر شدن.', 'mahan' ) ),
 				),
 			),
 			'media'   => array(
@@ -70,6 +75,8 @@ class Mahan_Elements_Catalog {
 					'video-popup'    => array( __( 'ویدیو با پخش‌کنندهٔ پاپ‌آپ', 'mahan' ), __( 'آپارات، یوتیوب یا فایل mp4.', 'mahan' ) ),
 					'lottie-player'  => array( __( 'انیمیشن لوتی', 'mahan' ), __( 'با تصویر جایگزین در نبود پخش‌کننده.', 'mahan' ) ),
 					'map-embed'      => array( __( 'نقشه', 'mahan' ), __( 'OpenStreetMap بدون نیاز به کلید، یا کد دلخواه.', 'mahan' ) ),
+					'image-accordion' => array( __( 'آکاردئون تصویری', 'mahan' ), __( 'پنل‌هایی که با نشانگر باز می‌شوند.', 'mahan' ) ),
+					'image-hotspots'  => array( __( 'نقاط تعاملی روی تصویر', 'mahan' ), __( 'پین‌های قابل کلیک با توضیح.', 'mahan' ) ),
 				),
 			),
 			'posts'   => array(
@@ -85,6 +92,7 @@ class Mahan_Elements_Catalog {
 					'service-grid'   => array( __( 'شبکهٔ خدمات', 'mahan' ), __( 'از بخش «خدمات».', 'mahan' ) ),
 					'breadcrumb'     => array( __( 'مسیر صفحه', 'mahan' ), __( 'با دادهٔ ساختاریافتهٔ BreadcrumbList.', 'mahan' ) ),
 					'search-box'     => array( __( 'جعبهٔ جستجو', 'mahan' ), __( 'با نتایج زنده.', 'mahan' ) ),
+					'share-buttons'  => array( __( 'دکمه‌های اشتراک‌گذاری', 'mahan' ), __( 'تلگرام، واتساپ، ایکس، لینکدین و کپی نشانی.', 'mahan' ) ),
 				),
 			),
 			'contact' => array(
@@ -96,6 +104,31 @@ class Mahan_Elements_Catalog {
 					'social-icons'    => array( __( 'شبکه‌های اجتماعی', 'mahan' ), __( 'از تنظیمات قالب یا ورود دستی.', 'mahan' ) ),
 					'countdown'       => array( __( 'شمارش معکوس', 'mahan' ), __( 'سه سبک، با ارقام فارسی.', 'mahan' ) ),
 				),
+			),
+		);
+
+		$catalog['business'] = array(
+			'label' => __( 'کسب‌وکار', 'mahan' ),
+			'icon'  => 'building',
+			'items' => array(
+				'price-list'    => array( __( 'لیست قیمت و منو', 'mahan' ), __( 'ردیف‌های نام، توضیح و قیمت با نقطه‌چین.', 'mahan' ) ),
+				'opening-hours' => array( __( 'ساعات کاری', 'mahan' ), __( 'روزهای هفته با امکان برجسته‌کردن و تعطیلی.', 'mahan' ) ),
+				'event-list'    => array( __( 'برنامه و رویدادها', 'mahan' ), __( 'کلاس‌ها و جلسه‌ها با روز، ساعت و ثبت‌نام.', 'mahan' ) ),
+				'job-list'      => array( __( 'فرصت‌های شغلی', 'mahan' ), __( 'موقعیت‌ها با واحد، محل کار و نوع همکاری.', 'mahan' ) ),
+				'download-list' => array( __( 'فایل‌های دانلود', 'mahan' ), __( 'کاتالوگ و راهنما با نوع و حجم فایل.', 'mahan' ) ),
+				'trust-badges'  => array( __( 'نمادهای اعتماد', 'mahan' ), __( 'ضمانت، ارسال و پرداخت امن در سه سبک.', 'mahan' ) ),
+			),
+		);
+
+		$catalog['builder'] = array(
+			'label' => __( 'ساخت قالب', 'mahan' ),
+			'icon'  => 'grid',
+			'items' => array(
+				'site-logo'  => array( __( 'لوگوی سایت', 'mahan' ), __( 'برای ساخت هدر با المنتور.', 'mahan' ) ),
+				'nav-menu'   => array( __( 'منوی سایت', 'mahan' ), __( 'هر منوی وردپرس، در سه سبک.', 'mahan' ) ),
+				'page-title' => array( __( 'عنوان صفحه', 'mahan' ), __( 'عنوان پویا به‌همراه مسیر صفحه.', 'mahan' ) ),
+				'post-meta'  => array( __( 'اطلاعات نوشته', 'mahan' ), __( 'نویسنده، تاریخ، زمان مطالعه و دسته.', 'mahan' ) ),
+				'author-box' => array( __( 'جعبهٔ نویسنده', 'mahan' ), __( 'تصویر، معرفی و لینک نوشته‌های نویسنده.', 'mahan' ) ),
 			),
 		);
 

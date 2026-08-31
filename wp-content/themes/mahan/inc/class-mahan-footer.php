@@ -50,7 +50,7 @@ class Mahan_Footer {
 	public function main() {
 		$layout = mahan_sanitize_choice(
 			mahan_option( 'footer_layout', 'columns' ),
-			array( 'columns', 'compact', 'centered', 'shop' )
+			array( 'columns', 'compact', 'centered', 'shop', 'mega', 'cta', 'minimal' )
 		);
 
 		get_template_part( 'template-parts/footer/layout', $layout );
